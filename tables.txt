@@ -1,19 +1,22 @@
 *=PK
 
 --Patient--
-*patientNo,givenname,surname,numVisits,prevVisit,nextVisit,outstandingCost,address,insuranceProv
+*patientNo,givenname,surname,nextVisit,outstandingCost,address,insuranceProv
 
 --Appointment--
-*appointmentNo,patient,procedure,date
+*appointmentNo,patientNo,date,cost
 
 --Procedure--
-*procedureNo,length,cost,equipment
+*procedureNo,name,length,cost,equipment
+
+--AppointmentProcedure--
+*appointmentNo,*procedureNo
 
 --Lab--
-*labNo,name,equipment,service
+*labNo,name
 
 --Equipment--
 *equipmentNo,name,cost
 
---Service--
-*serviceNo,name,cost
+--LabEquipment--
+*labNo,*equipmentNo
