@@ -19,7 +19,7 @@
 *procedureNo,length
 
 --ProcedureEquipment--
-*procedureNo,equipment
+*procedureNo,*equipment
 
 --AppointmentProcedure--
 *appointmentNo,*procedureNo
