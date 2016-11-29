@@ -10,7 +10,7 @@
 *patientNo,insuranceProv
 
 --Appointment--
-*appointmentNo,patientNo,date
+*appointmentNo,*patientNo,date
 
 --Procedure--
 *procedureNo,name,cost
