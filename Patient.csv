@@ -1,36 +1,36 @@
-0001,NULL,1782,4132 Grand Deer Acres
-0002,22-Jul-17,2675,1125 Velvet Elk Inlet
-0003,16-Aug-17,743,5121 Golden Embers Terrace
-0004,03-Jan-17,528,3804 Bright Green
-0005,NULL,356,9128 Clear Canyon
-0006,14-Mar-17,2850,3543 Colonial Corners
-0007,03-Dec-16,1611,3794 Heather Manor
-0008,29-Dec-16,338,6516 Cinder Crescent
-0009,02-Mar-17,1957,6444 Hazy Concession
-0010,18-Jul-17,1712,4481 Sleepy Trail
-0011,11-Nov-17,541,1587 Blue Pony Private
-0012,14-Apr-17,1613,9714 Hidden Pioneer Port
-0013,07-Jul-17,749,1395 Burning Autoroute
-0014,NULL,1986,6217 Umber Spring Common
-0015,01-May-17,356,7969 Lazy Anchor Quay
-0016,29-Dec-16,2100,7318 Quaking Crossing
-0017,19-Jan-17,326,6120 Cotton Lagoon Drive
-0018,13-Feb-17,2373,3760 Amber Fox Close
-0019,28-Feb-17,2592,5121 Rustic Line
-0020,13-Mar-17,505,7370 Silent Apple Court
-0021,20-Mar-17,270,9155 Foggy By-pass
-0022,24-Mar-17,919,1182 Red Downs
-0023,14-Apr-17,371,3049 Middle Beacon Valley
-0024,16-May-17,382,9119 Quiet Timber Byway
-0025,17-May-17,1509,9011 Gentle Shadow Meadow
-0026,25-May-17,679,831 High Passage
-0027,19-Jun-17,2581,6015 Emerald Mountain
-0028,08-Sep-17,1131,8259 Lost Bluff Wood
-0029,15-Aug-17,2327,937 Dusty Rabbit Circuit
-0030,09-Jul-17,2992,1643 Rocky Beach
-0031,29-Sep-17,595,3730 Noble Dale
-0032,19-Oct-17,1232,1007 Pleasant Island Freeway
-0033,11-Jun-17,875,7403 Round View
-0034,NULL,1211,1092 Honey Parkway
-0035,11-Aug-17,2471,2330 Thunder River Boulevard
-0036,29-Nov-17,577,NULL
+0001,NULL,1782,'4132 Grand Deer Acres'
+0002,'22-Jul-17',2675,'1125 Velvet Elk Inlet'
+0003,'16-Aug-17',743,'5121 Golden Embers Terrace'
+0004,'03-Jan-17',528,'3804 Bright Green'
+0005,NULL,356,'9128 Clear Canyon'
+0006,'14-Mar-17',2850,'3543 Colonial Corners'
+0007,'03-Dec-16',1611,'3794 Heather Manor'
+0008,'29-Dec-16',338,'6516 Cinder Crescent'
+0010,'18-Jul-17',1712,'4481 Sleepy Trail'
+0009,'02-Mar-17',1957,'6444 Hazy Concession'
+0011,'11-Nov-17',541,'1587 Blue Pony Private'
+0012,'14-Apr-17',1613,'9714 Hidden Pioneer Port'
+0013,'07-Jul-17',749,'1395 Burning Autoroute'
+0014,NULL,1986,'6217 Umber Spring Common'
+0015,'01-May-17',356,'7969 Lazy Anchor Quay'
+0016,'29-Dec-16',2100,'7318 Quaking Crossing'
+0017,'19-Jan-17',326,'6120 Cotton Lagoon Drive'
+0018,'13-Feb-17',2373,'3760 Amber Fox Close'
+0019,'28-Feb-17',2592,'5121 Rustic Line'
+0020,'13-Mar-17',505,'7370 Silent Apple Court'
+0021,'20-Mar-17',270,'9155 Foggy By-pass'
+0022,'24-Mar-17',919,'1182 Red Downs'
+0023,'14-Apr-17',371,'3049 Middle Beacon Valley'
+0024,'16-May-17',382,'9119 Quiet Timber Byway'
+0025,'17-May-17',1509,'9011 Gentle Shadow Meadow'
+0026,'25-May-17',679,'831 High Passage'
+0027,'19-Jun-17',2581,'6015 Emerald Mountain'
+0028,'08-Sep-17',1131,'8259 Lost Bluff Wood'
+0029,'15-Aug-17',2327,'937 Dusty Rabbit Circuit'
+0030,'09-Jul-17',2992,'1643 Rocky Beach'
+0031,'29-Sep-17',595,'3730 Noble Dale'
+0032,'19-Oct-17',1232,'1007 Pleasant Island Freeway'
+0033,'11-Jun-17',875,'7403 Round View'
+0034,NULL,1211,'1092 Honey Parkway'
+0035,'11-Aug-17',2471,'2330 Thunder River Boulevard'
+0036,'29-Nov-17',577,NULL
