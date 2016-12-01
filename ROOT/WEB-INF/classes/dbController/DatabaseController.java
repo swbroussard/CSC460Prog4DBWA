@@ -29,18 +29,18 @@ public class DatabaseController {
   /**
    * The password that is used to connect to the DBMS.
    */
-  protected String password = "a5437";
+  protected String password = null;
   /**
    * The username that is used to connect to the DBMS.
    */
-  protected String username = "cameronsmith";
+  protected String username = null;
 
 
   public DatabaseController() {
     // your cs login name
-    username = "cameronsmith"; 
+    username = "username"; 
     // your Oracle password, NNNN is the last four digits of your CSID
-    password = "a5437";
+    password = "password";
     connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
   }
 
@@ -94,7 +94,7 @@ public class DatabaseController {
 
   public Vector<String> FindAllPatients() {
     String sql_query = "SELECT * FROM cameronsmith.Patient";
-    try {
+   try {
       ResultSet rs  = statement_.executeQuery(sql_query);
       Vector<String> result_patients = new Vector<String>();
       while (rs.next()) {
@@ -178,5 +178,35 @@ public class DatabaseController {
             e.printStackTrace();
         }
         return toReturn;
+    }
+
+    public Vector<String> CommonProcedure() {
+        
+        String sqlQuery = "SELECT name, count(name) as occurence "
+            + "FROM cameronsmith.Procedure p, cameronsmith.AppointmentProcedure ap, "
+            + "cameronsmith.Appointment a "
+            + "WHERE p.procedureno=ap.procedureno "
+            + "  AND ap.appointmentno=a.appointmentno "
+            + "  AND extract(YEAR from day)=2016 "
+            + "GROUP BY name "
+            + "ORDER BY occurence DESC";
+
+        Vector<String> result = new Vector<String>();
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String tmp = rs.getString("name") + "##"
+                    + rs.getString("occurence");
+                result.add(tmp);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            result.add("ERROR##ERROR");
+        }
+
+        
+        return result;
     }
 }
