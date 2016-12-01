@@ -29,18 +29,18 @@ public class DatabaseController {
   /**
    * The password that is used to connect to the DBMS.
    */
-  protected String password = null;
+  protected String password = "a5437";
   /**
    * The username that is used to connect to the DBMS.
    */
-  protected String username = null;
+  protected String username = "cameronsmith";
 
 
   public DatabaseController() {
     // your cs login name
-    username = "username"; 
+    username = "cameronsmith"; 
     // your Oracle password, NNNN is the last four digits of your CSID
-    password = "password";
+    password = "a5437";
     connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
   }
 
@@ -109,4 +109,74 @@ public class DatabaseController {
     }
     return null;
   }
+
+    public String insertPatient(String givenname, String surname, String address,
+            String insuranceProv) {
+        String patNo = "SELECT patientNo FROM cameronsmith.Patient";
+        System.out.println("HERE");
+
+        Integer max = 0; // Max patient number.
+        try {
+            ResultSet rs = statement_.executeQuery(patNo);
+
+            while(rs.next()) {
+                Integer currNo = new Integer(rs.getString("patientNo"));
+                if (currNo > max) {
+                    max = currNo;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Insert into Patient related tables.
+        Integer nextPatNo = max + 1;
+        String insertUpdate = "INSERT INTO cameronsmith.Patient VALUES (" +
+            (nextPatNo).toString() + ", NULL, NULL, " + address + ")";
+
+        String insertName = "INSERT INTO cameronsmith.PatientName VALUES (" +
+            (nextPatNo).toString() + ", " + givenname + ", " + surname + ")";
+
+        String insertInsurance = "INSERT INTO cameronsmith.PatientInsurance VALUES (" +
+            (nextPatNo).toString() + ", " + insuranceProv + ")";
+
+        try {
+            statement_.executeUpdate(insertUpdate);
+            connection_.commit();
+            statement_.executeUpdate(insertName);
+            connection_.commit();
+            statement_.executeUpdate(insertInsurance);
+            connection_.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Return the Patient that was just inserted.
+        String toReturn = null;
+
+        try {
+            ResultSet rs = statement_.executeQuery("SELECT * "
+                + "FROM cameronsmith.Patient, cameronsmith.PatientName, "
+                + "cameronsmith.PatientInsurance"
+                + " WHERE "
+                + "cameronsmith.Patient.patientNo=cameronsmith.PatientName.patientNo"
+                + " AND "
+                + "cameronsmith.Patient.patientNo=cameronsmith.PatientInsurance.patientNo"
+                + " AND "
+                + "cameronsmith.Patient.patientNo=" + (nextPatNo).toString());
+
+            if (rs.next()) {
+                toReturn = rs.getString("patientNo") + "##"
+                    + rs.getString("givenname") + "##"
+                    + rs.getString("surname") + "##"
+                    + rs.getString("nextVisit") + "##"
+                    + rs.getString("outstandingCost") + "##"
+                    + rs.getString("address") + "##"
+                    + rs.getString("insuranceProv");
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
 }

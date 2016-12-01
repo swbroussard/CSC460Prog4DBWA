@@ -6,5 +6,19 @@
 </head>
 <body>
    <input type="button" id="demo_button" value="click me" onClick="Demo()"/> 
+    <div>
+        <p>Insert new patient:<br></p>
+        <form action="insertpatient.jsp" method="GET">
+            First name: <br>
+            <input type="text" name="givenname"><br>
+            Last name: <br>
+            <input type="text" name="surname"><br>
+            Address: <br>
+            <input type="text" name="address"><br>
+            Insurance Provider: <br>
+            <input type="text" name="insuranceProv"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
