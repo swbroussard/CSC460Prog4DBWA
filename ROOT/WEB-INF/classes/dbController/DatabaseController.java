@@ -29,18 +29,18 @@ public class DatabaseController {
   /**
    * The password that is used to connect to the DBMS.
    */
-  protected String password = "a5437";
+  protected String password = null;
   /**
    * The username that is used to connect to the DBMS.
    */
-  protected String username = "cameronsmith";
+  protected String username = null;
 
 
   public DatabaseController() {
     // your cs login name
-    username = "cameronsmith"; 
+    username = "username"; 
     // your Oracle password, NNNN is the last four digits of your CSID
-    password = "a5437";
+    password = "password";
     connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
   }
 
