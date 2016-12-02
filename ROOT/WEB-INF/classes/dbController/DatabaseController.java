@@ -29,18 +29,18 @@ public class DatabaseController {
   /**
    * The password that is used to connect to the DBMS.
    */
-  protected String password = null;
+  protected String password = "a5437";
   /**
    * The username that is used to connect to the DBMS.
    */
-  protected String username = null;
+  protected String username = "cameronsmith";
 
 
   public DatabaseController() {
     // your cs login name
-    username = "username"; 
+    username = "cameronsmith"; 
     // your Oracle password, NNNN is the last four digits of your CSID
-    password = "password";
+    password = "a5437";
     connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
   }
 
@@ -203,10 +203,37 @@ public class DatabaseController {
 
             return result;
         } catch (SQLException e) {
-            result.add("ERROR##ERROR");
+            e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public Vector<String> FindOutstandingCosts(String amount) {
         
-        return result;
+        String sqlQuery = "SELECT p.patientno, givenname, surname, outstandingcost "
+            + "FROM cameronsmith.Patient p, cameronsmith.PatientName pn "
+            + "WHERE p.patientno=pn.patientno "
+            + "  AND p.outstandingcost>=" + amount;
+
+        Vector<String> result = new Vector<String>();
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String tmp = rs.getString("patientno") + "##"
+                    + rs.getString("givenname") + "##"
+                    + rs.getString("surname") + "##"
+                    + rs.getString("outstandingcost");
+
+                result.add(tmp);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
