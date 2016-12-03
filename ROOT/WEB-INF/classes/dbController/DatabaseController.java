@@ -148,13 +148,13 @@ public class DatabaseController {
         // Insert into Patient related tables.
         Integer nextPatNo = max + 1;
         String insertUpdate = "INSERT INTO cameronsmith.Patient VALUES (" +
-            (nextPatNo).toString() + ", NULL, NULL, " + address + ")";
+            (nextPatNo).toString() + ", NULL, NULL, '" + address + "')";
 
         String insertName = "INSERT INTO cameronsmith.PatientName VALUES (" +
-            (nextPatNo).toString() + ", " + givenname + ", " + surname + ")";
+            (nextPatNo).toString() + ", '" + givenname + "', '" + surname + "')";
 
         String insertInsurance = "INSERT INTO cameronsmith.PatientInsurance VALUES (" +
-            (nextPatNo).toString() + ", " + insuranceProv + ")";
+            (nextPatNo).toString() + ", '" + insuranceProv + "')";
 
         try {
             statement_.executeUpdate(insertUpdate);
