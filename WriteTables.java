@@ -186,6 +186,9 @@ public class WriteTables {
    							stmnt.executeUpdate(
    								"INSERT INTO " + table + 
    								" VALUES ( " + values + " )");
+                            stmnt.executeUpdate("GRANT SELECT, INSERT, UPDATE, "
+                                + "DELETE ON " + table + " TO stevenwbroussard, "
+                                + "sadler, pmaley, zhengezhao");
    							stmnt.close();
    						} catch (SQLException e) {
                             // If an insert fails, drop the table.
