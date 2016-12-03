@@ -253,6 +253,29 @@ public class DatabaseController {
         return null;
     }
 
+    public Vector<String> ListAllProcedures() {
+        
+        String sqlQuery = "SELECT procedureno, name "
+            + "FROM cameronsmith.Procedure";
+
+        Vector<String> result = new Vector<String>();
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String tmp = rs.getString("procedureno") + "##"
+                    + rs.getString("name");
+
+                result.add(tmp);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public String DeletePatient(Integer id){
       String deleteFromPatientTable = "DELETE FROM cameronsmith.Patient WHERE patientNo=" +
             id;
@@ -280,4 +303,5 @@ public class DatabaseController {
       }
       return "Deletion failed";
     }
+
 }
