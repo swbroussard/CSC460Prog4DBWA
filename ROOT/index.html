@@ -5,7 +5,8 @@
     <script type="text/javascript" src="scripts/jspCaller.js"></script>
 </head>
 <body>
-   <input type="button" id="demo_button" value="click me" onClick="Demo()"/> 
+   <input type="button" id="demo_button" value="Demo" onClick="Demo()"/> 
+   <input type="button" id="delete_button" value="Deletion Page" onClick="Delete()"/> 
     <div>
         <p>Insert new patient:<br></p>
         <form action="insertpatient.jsp" method="GET">
@@ -30,6 +31,14 @@
             <input type="text" name="outstandingcosts"><br/>
             <input type="submit" value="Find Outstanding Costs">
         </form>
+    </div>
+
+    <div>
+     <form action="deletepatient.jsp" method="GET">
+            Patient ID: <br>
+            <input type="text" name="patientid"><br>
+            <input type="submit" value="Delete Record">
+    </form>
     </div>
 </body>
 </html>

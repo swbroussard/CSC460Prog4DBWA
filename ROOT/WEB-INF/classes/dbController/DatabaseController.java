@@ -110,7 +110,23 @@ public class DatabaseController {
     return null;
   }
 
-    public String insertPatient(String givenname, String surname, String address,
+  public Vector<String> FindAllPatientNames() {
+    String sql_query = "SELECT * FROM cameronsmith.PatientName";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_patientnames = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("patientNo") + "##" 
+            + rs.getString("givenname") + "##" + rs.getString("surname"); 
+        result_patientnames.add(temp_record);
+      }
+      return result_patientnames;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+  public String insertPatient(String givenname, String surname, String address,
             String insuranceProv) {
         String patNo = "SELECT patientNo FROM cameronsmith.Patient";
         System.out.println("HERE");
@@ -178,7 +194,7 @@ public class DatabaseController {
             e.printStackTrace();
         }
         return toReturn;
-    }
+   }
 
     public Vector<String> CommonProcedure() {
         
@@ -235,5 +251,33 @@ public class DatabaseController {
         }
 
         return null;
+    }
+
+    public String DeletePatient(Integer id){
+      String deleteFromPatientTable = "DELETE FROM cameronsmith.Patient WHERE patientNo=" +
+            id;
+
+      try {
+            statement_.execute(deleteFromPatientTable);
+            //connection_.commit();
+            return "This id:" + id + "is deleted from the table";
+      } catch (SQLException e) {
+            e.printStackTrace();
+      }
+      return "Deletion failed";
+    }
+
+    public String DeletePatientName(Integer id){
+      String deleteFromPatientTable = "DELETE FROM cameronsmith.PatientName WHERE patientNo=" +
+            id;
+
+      try {
+            statement_.execute(deleteFromPatientTable);
+            //connection_.commit();
+            return "This id:" + id + "is deleted from the table";
+      } catch (SQLException e) {
+            e.printStackTrace();
+      }
+      return "Deletion failed";
     }
 }

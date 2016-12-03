@@ -5,3 +5,7 @@ function Demo() {
 function commonProc() {
     window.location = "commonProc.jsp";
 }
+
+function Delete() {
+    window.location = "delete.jsp";
+}
