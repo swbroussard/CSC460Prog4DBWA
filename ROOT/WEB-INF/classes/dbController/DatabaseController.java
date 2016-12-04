@@ -288,13 +288,13 @@ public class DatabaseController {
         // Insert into Patient related tables.
         Integer nextPatNo = max + 1;
         String insertUpdate = "INSERT INTO cameronsmith.Patient VALUES (" +
-            (nextPatNo).toString() + ", NULL, NULL, " + address + ")";
+            (nextPatNo).toString() + ", NULL, NULL, '" + address + "')";
 
         String insertName = "INSERT INTO cameronsmith.PatientName VALUES (" +
-            (nextPatNo).toString() + ", " + givenname + ", " + surname + ")";
+            (nextPatNo).toString() + ", '" + givenname + "', '" + surname + "')";
 
         String insertInsurance = "INSERT INTO cameronsmith.PatientInsurance VALUES (" +
-            (nextPatNo).toString() + ", " + insuranceProv + ")";
+            (nextPatNo).toString() + ", '" + insuranceProv + "')";
 
         try {
             statement_.executeUpdate(insertUpdate);
@@ -393,6 +393,7 @@ public class DatabaseController {
         return null;
     }
 
+
     public String Delete(Integer id, String tablename, String columnname){
       String deleteFromTable = "DELETE FROM cameronsmith."+ tablename +" WHERE "+ columnname + "=" + id;
 
@@ -450,6 +451,34 @@ public class DatabaseController {
           default: break;
       }
 
+    public Vector<String> ListAllProcedures() {
+        
+        String sqlQuery = "SELECT procedureno, name "
+            + "FROM cameronsmith.Procedure";
+
+        Vector<String> result = new Vector<String>();
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String tmp = rs.getString("procedureno") + "##"
+                    + rs.getString("name");
+
+                result.add(tmp);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String DeletePatient(Integer id){
+      String deleteFromPatientTable = "DELETE FROM cameronsmith.Patient WHERE patientNo=" +
+            id;
+
+
       try {
             statement_.execute(deleteFromTable);
             //connection_.commit();
@@ -488,17 +517,19 @@ public class DatabaseController {
       return "Deletion failed";
     }
 
-    // public String DeletePatientName(Integer id){
-    //   String deleteFromPatientTable = "DELETE FROM cameronsmith.PatientName WHERE patientNo=" +
-    //         id;
 
-    //   try {
-    //         statement_.execute(deleteFromPatientTable);
-    //         //connection_.commit();
-    //         return "This id:" + id + "is deleted from the table";
-    //   } catch (SQLException e) {
-    //         e.printStackTrace();
-    //   }
-    //   return "Deletion failed";
-    // }
+    public String DeletePatientName(Integer id){
+      String deleteFromPatientTable = "DELETE FROM cameronsmith.PatientName WHERE patientNo=" +
+            id;
+
+      try {
+            statement_.execute(deleteFromPatientTable);
+            //connection_.commit();
+            return "This id:" + id + "is deleted from the table";
+      } catch (SQLException e) {
+            e.printStackTrace();
+      }
+      return "Deletion failed";
+    }
+
 }

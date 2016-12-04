@@ -24,37 +24,34 @@
             String address = request.getParameter("address");
             String insuranceProv = request.getParameter("insuranceProv");
 
-            out.println(givenname + " " + surname + " " + address + " " +
-                insuranceProv);
-
             String res = dbcontroller.insertPatient(givenname, surname, address,
                 insuranceProv);
-            out.println(res);
+
             if (res == null) {
                 content.append("Failed to insert into the database!");
             }
 
-//            content.append("<tr><th>PatientNo</th><th>FirstName</th><th>LastName</th>"
-//                + "<th>NextVisit</th><th>OutstandingCost</th>"
-//                + "<th>Address</th><th>InsuranceProv.</th>");
-//            
-//            if (res != null) {
-//                String[] detail = res.split("##");
-//
-//                content.append("<tr>");
-//                content.append("<td>" + detail[0] + "</td>");
-//                content.append("<td>" + detail[1] + "</td>");
-//                content.append("<td>" + detail[2] + "</td>");
-//                content.append("<td>" + detail[3] + "</td>");
-//                content.append("<td>" + detail[4] + "</td>");
-//                content.append("<td>" + detail[5] + "</td>");
-//                content.append("<td>" + detail[6] + "</td>");
-//                content.append("</tr>");
-//            }
-//            
-//
-//            content.append("</table>");
-//            out.write(content.toString());
+            content.append("<tr><th>PatientNo</th><th>FirstName</th><th>LastName</th>"
+                + "<th>NextVisit</th><th>OutstandingCost</th>"
+                + "<th>Address</th><th>InsuranceProv.</th>");
+            
+            if (res != null) {
+                String[] detail = res.split("##");
+
+                content.append("<tr>");
+                content.append("<td>" + detail[0] + "</td>");
+                content.append("<td>" + detail[1] + "</td>");
+                content.append("<td>" + detail[2] + "</td>");
+                content.append("<td>" + detail[3] + "</td>");
+                content.append("<td>" + detail[4] + "</td>");
+                content.append("<td>" + detail[5] + "</td>");
+                content.append("<td>" + detail[6] + "</td>");
+                content.append("</tr>");
+            }
+            
+
+            content.append("</table>");
+            out.write(content.toString());
             dbcontroller.Close();
 
         %>

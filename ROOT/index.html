@@ -6,6 +6,7 @@
 </head>
 <body>
    <input type="button" id="demo_button" value="Demo" onClick="Demo()"/> 
+
    <input type="button" id="delete_button" value="Patient Deletion Page" onClick="Delete()"/> 
    <input type="button" id="appointment_button" value="Appointment Deletion Page" onClick="Appointment()"/> 
    <input type="button" id="appointment_button" value="Procedure Deletion Page" onClick="Procedure()"/> 
@@ -24,10 +25,19 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+
+   <!--<input type="button" id="delete_button" value="Deletion Page" onClick="Delete()"/> -->
+   <br/><br/>
+    <a href="insert.jsp">Click here to insert into a new patient, lab,
+        equipment, or appointment.</a>
+    <br/>
+    <h2>Queries</h2>
+
     <div>
         <input type="button" id="proc_search" 
             value="List most common procedure of 2016" onClick="commonProc()"/>
     </div>
+    <br/>
     <div>
         <form action="findoutstandingcosts.jsp" method="GET">
             Find outstanding costs greater than: 
@@ -35,5 +45,6 @@
             <input type="submit" value="Find Outstanding Costs">
         </form>
     </div>
+
 </body>
 </html>
