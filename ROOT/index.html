@@ -6,12 +6,33 @@
 </head>
 <body>
    <input type="button" id="demo_button" value="Demo" onClick="Demo()"/> 
-   <input type="button" id="delete_button" value="Deletion Page" onClick="Delete()"/> 
+
+   <input type="button" id="delete_button" value="Patient Deletion Page" onClick="Delete()"/> 
+   <input type="button" id="appointment_button" value="Appointment Deletion Page" onClick="Appointment()"/> 
+   <input type="button" id="appointment_button" value="Procedure Deletion Page" onClick="Procedure()"/> 
+   <input type="button" id="appointment_button" value="Equipment and Lab Deletion Page" onClick="EquipmentAndLab()"/> 
+    <div>
+        <p>Insert new patient:<br></p>
+        <form action="insertpatient.jsp" method="GET">
+            First name: <br>
+            <input type="text" name="givenname"><br>
+            Last name: <br>
+            <input type="text" name="surname"><br>
+            Address: <br>
+            <input type="text" name="address"><br>
+            Insurance Provider: <br>
+            <input type="text" name="insuranceProv"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+   <!--<input type="button" id="delete_button" value="Deletion Page" onClick="Delete()"/> -->
    <br/><br/>
     <a href="insert.jsp">Click here to insert into a new patient, lab,
         equipment, or appointment.</a>
     <br/>
     <h2>Queries</h2>
+
     <div>
         <input type="button" id="proc_search" 
             value="List most common procedure of 2016" onClick="commonProc()"/>
@@ -24,13 +45,6 @@
             <input type="submit" value="Find Outstanding Costs">
         </form>
     </div>
-    <br/>
-    <div>
-     <form action="deletepatient.jsp" method="GET">
-            Patient ID: <br>
-            <input type="text" name="patientid"><br>
-            <input type="submit" value="Delete Record">
-    </form>
-    </div>
+
 </body>
 </html>

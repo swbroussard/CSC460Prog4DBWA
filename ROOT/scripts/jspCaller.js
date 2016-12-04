@@ -9,3 +9,15 @@ function commonProc() {
 function Delete() {
     window.location = "delete.jsp";
 }
+
+function Appointment() {
+    window.location = "deleteAppointment.jsp";
+}
+
+function Procedure() {
+    window.location = "deleteProcedure.jsp";
+}
+
+function EquipmentAndLab() {
+    window.location = "deleteequipmentandlab.jsp";
+}
