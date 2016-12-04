@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-    <a href="index.html">Return to home page.</a>
+    <a href="../index.html">Return to home page.</a>
     <div id="result"> 
         <% 
             request.setCharacterEncoding("UTF-8");
@@ -19,12 +19,12 @@
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
 
-            String givenname = request.getParameter("patientid");
-            Integer patientID = Integer.parseInt(givenname);
-            out.println(patientID);
+            String equipmentNo = request.getParameter("equipmentId");
+            //Integer equipmentNo = Integer.parseInt(givenname);
+            out.println(equipmentNo);
            
 
-            String res = dbcontroller.DeletePatient(patientID);
+            String res = dbcontroller.Delete(equipmentNo, "Equipment", "equipmentNo");
             out.println(res);
             if (res == null) {
                 content.append("Failed to insert into the database!");

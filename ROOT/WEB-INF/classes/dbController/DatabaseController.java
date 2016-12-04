@@ -126,6 +126,163 @@ public class DatabaseController {
     }
     return null;
   }
+
+  public Vector<String> FindAllPatientInsurance() {
+    String sql_query = "SELECT * FROM cameronsmith.PatientInsurance";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_patientinsurance = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("patientNo") + "##" 
+            + rs.getString("insuranceProv"); 
+        result_patientinsurance.add(temp_record);
+      }
+      return result_patientinsurance;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+  public Vector<String> FindAllAppointments() {
+    String sql_query = "SELECT * FROM cameronsmith.Appointment";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_appointment = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("appointmentNo") + "##" 
+            + rs.getString("patientNo")+ "##" 
+            + rs.getString("day"); 
+        result_appointment.add(temp_record);
+      }
+      return result_appointment;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+  public Vector<String> FindAllProcedures() {
+    String sql_query = "SELECT * FROM cameronsmith.Procedure";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_procedure = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("procedureNo") + "##" 
+            + rs.getString("name")+ "##" 
+            + rs.getString("cost"); 
+        result_procedure.add(temp_record);
+      }
+      return result_procedure;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+    public Vector<String> FindAllProcedureLengths() {
+    String sql_query = "SELECT * FROM cameronsmith.ProcedureLength";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_procedure = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("procedureNo") + "##" 
+            + rs.getString("length"); 
+        result_procedure.add(temp_record);
+      }
+      return result_procedure;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+   public Vector<String> FindAllAppointmentProcedures() {
+    String sql_query = "SELECT * FROM cameronsmith.AppointmentProcedure";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_appointmentprocedure = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("appointmentNo") + "##" 
+            + rs.getString("procedureNo"); 
+        result_appointmentprocedure.add(temp_record);
+      }
+      return result_appointmentprocedure;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+  public Vector<String> FindAllEquipment() {
+    String sql_query = "SELECT * FROM cameronsmith.Equipment";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_equipment = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("equipmentNo") + "##" 
+            + rs.getString("name") + "##" 
+            + rs.getString("cost") ; 
+        result_equipment.add(temp_record);
+      }
+      return result_equipment;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+   public Vector<String> FindAllProcedureEquipment() {
+    String sql_query = "SELECT * FROM cameronsmith.ProcedureEquipment";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_procedureequipment = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("procedureNo") + "##" 
+            + rs.getString("equipment"); 
+        result_procedureequipment.add(temp_record);
+      }
+      return result_procedureequipment;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+   public Vector<String> FindAllLabEquipment() {
+    String sql_query = "SELECT * FROM cameronsmith.LabEquipment";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_labequipment = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("labNo") + "##" 
+            + rs.getString("equipmentNo"); 
+        result_labequipment.add(temp_record);
+      }
+      return result_labequipment;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
+  public Vector<String> FindAllLab() {
+    String sql_query = "SELECT * FROM cameronsmith.Lab";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_lab = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("labNo") + "##" 
+            + rs.getString("name"); 
+        result_lab.add(temp_record);
+      }
+      return result_lab;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
   public String insertPatient(String givenname, String surname, String address,
             String insuranceProv) {
         String patNo = "SELECT patientNo FROM cameronsmith.Patient";
@@ -196,6 +353,52 @@ public class DatabaseController {
         return toReturn;
    }
 
+    public String insertAppointment(String patientno, String date, 
+            String procedureno) {
+
+        String maxAppNo = "SELECT MAX(appointmentno) "
+            + "FROM cameronsmith.Appointment";
+
+        Integer nextAppNo = null;
+        try {
+            ResultSet rs = statement_.executeQuery(maxAppNo);
+
+            rs.next();
+            nextAppNo = new Integer(rs.getString("max(appointmentno)"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String insertAppointment = "INSERT INTO cameronsmith.Appointment "
+            + "VALUES (" + (nextAppNo + 1) + ", " + patientno + ", '" + date + "')";
+        String insertAppProc = "INSERT INTO cameronsmith.AppointmentProcedure "
+            + "VALUES (" + (nextAppNo + 1) + ", " + procedureno + ")";
+
+        try {
+            statement_.executeUpdate(insertAppointment);
+            statement_.executeUpdate(insertAppProc);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        String newApp = "SELECT a.appointmentno, patientno, day, procedureno "
+            + "FROM cameronsmith.Appointment a, cameronsmith.AppointmentProcedure ap "
+            + "WHERE a.appointmentno=ap.appointmentno"
+            + "  AND a.appointmentno=" + (nextAppNo + 1);
+        try {
+            ResultSet rs = statement_.executeQuery(newApp);
+
+            rs.next();
+            return rs.getString("appointmentno") + "##"
+                + rs.getString("patientno") + "##" + rs.getString("day") + "##"
+                + rs.getString("procedureno");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public Vector<String> CommonProcedure() {
         
         String sqlQuery = "SELECT name, count(name) as occurence "
@@ -253,19 +456,190 @@ public class DatabaseController {
         return null;
     }
 
-    public String DeletePatient(Integer id){
-      String deleteFromPatientTable = "DELETE FROM cameronsmith.Patient WHERE patientNo=" +
-            id;
+    public Vector<String> FindPatientInformation(String firstName, String lastName) {
+        boolean firstNameNull = firstName.length() == 0;
+        boolean lastNameNull = lastName.length() == 0;
+        String sql_query = null;
 
-      try {
-            statement_.execute(deleteFromPatientTable);
+        if(firstNameNull){
+         sql_query = "Select cameronsmith.PatientName.patientNo, givenname, surname, address, insuranceProv From cameronsmith.PatientName, cameronsmith.Patient, cameronsmith.PatientInsurance WHERE cameronsmith.PatientName.surname LIKE '%" + lastName + "%' AND cameronsmith.PatientName.PatientNo = cameronsmith.Patient.PatientNo AND cameronsmith.PatientName.PatientNo = cameronsmith.PatientInsurance.PatientNo";
+        }else if(lastNameNull){
+          sql_query = "Select cameronsmith.PatientName.patientNo, givenname, surname, address, insuranceProv From cameronsmith.PatientName, cameronsmith.Patient, cameronsmith.PatientInsurance WHERE cameronsmith.PatientName.givenname LIKE '%" + firstName + "%' AND cameronsmith.PatientName.PatientNo = cameronsmith.Patient.PatientNo AND cameronsmith.PatientName.PatientNo = cameronsmith.PatientInsurance.PatientNo";
+        }else{
+          sql_query = "Select cameronsmith.PatientName.patientNo, givenname, surname, address, insuranceProv From cameronsmith.PatientName, cameronsmith.Patient, cameronsmith.PatientInsurance WHERE cameronsmith.PatientName.givenname LIKE '%" + firstName + "%' AND cameronsmith.PatientName.surname LIKE '%" + lastName  + "%' AND cameronsmith.PatientName.PatientNo = cameronsmith.Patient.PatientNo AND cameronsmith.PatientName.PatientNo = cameronsmith.PatientInsurance.PatientNo";
+        }
+
+       try {
+          ResultSet rs  = statement_.executeQuery(sql_query);
+          Vector<String> result_lab = new Vector<String>();
+          while (rs.next()) {
+             String temp_record = rs.getString("patientNo") + "##" 
+                + rs.getString("givenname")+ "##" 
+                + rs.getString("surname")+ "##" 
+                + rs.getString("address")+ "##" 
+                + rs.getString("insuranceProv"); 
+            result_lab.add(temp_record);
+          }
+          return result_lab;
+        } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+        }
+        return null;
+    }
+
+    public String Delete(String id, String tablename, String columnname){
+      boolean valueWorks = testValue(id);
+      if(!valueWorks){
+          return "Deletion failed-Nan";
+      }
+      String deleteFromTable = "DELETE FROM cameronsmith."+ tablename +" WHERE "+ columnname + "=" + id;
+
+      switch(tablename){
+          case "PatientName": String deleteFromPatient = "DELETE FROM cameronsmith.Patient WHERE PatientNo=" + id;
+                              String deleteFromPatientInsurance = "DELETE FROM cameronsmith.PatientInsurance WHERE PatientNo=" + id;
+                              String deleteFromAppointmentPatient = "DELETE FROM cameronsmith.Appointment WHERE PatientNo=" + id;
+                               try {
+                                  statement_.execute(deleteFromPatient);
+                                  statement_.execute(deleteFromPatientInsurance);
+                                  statement_.execute(deleteFromAppointmentPatient);
+                                   //connection_.commit();
+                               } catch (SQLException e) {
+                                  e.printStackTrace();
+                               }
+                              
+                              break;
+          case "Procedure":String deleteFromAppointmentProcedure = "DELETE FROM cameronsmith.AppointmentProcedure WHERE ProcedureNo=" + id;
+                          String deleteFromProcedureLength = "DELETE FROM cameronsmith.ProcedureLength WHERE ProcedureNo=" + id;
+                          String deleteFromProcedureEquipment = "DELETE FROM cameronsmith.ProcedureEquipment WHERE ProcedureNo=" + id;
+                              
+                               try {
+                                  statement_.execute(deleteFromAppointmentProcedure);
+                                  statement_.execute(deleteFromProcedureLength);
+                                  statement_.execute(deleteFromProcedureEquipment);
+                                   //connection_.commit();
+                               } catch (SQLException e) {
+                                  e.printStackTrace();
+                               }
+                              
+                              break;
+          case "Equipment":String deleteFromProcedureEquipmentFromEquipment = "DELETE FROM cameronsmith.ProcedureEquipment WHERE Equipment=" + id;
+                           String deleteFromLabEquipment = "DELETE FROM cameronsmith.LabEquipment WHERE EquipmentNo=" + id;                         
+                              
+                               try {
+                                  statement_.execute(deleteFromProcedureEquipmentFromEquipment);
+                                  statement_.execute(deleteFromLabEquipment);
+                                   //connection_.commit();
+                               } catch (SQLException e) {
+                                  e.printStackTrace();
+                               }
+                              
+                              break;
+
+          case "Lab":String deleteFromLabEquipmentFromLab = "DELETE FROM cameronsmith.LabEquipment WHERE labNo=" + id;
+                                                  
+                             try {
+                                statement_.execute(deleteFromLabEquipmentFromLab);
+                                 //connection_.commit();
+                             } catch (SQLException e) {
+                                e.printStackTrace();
+                             }
+                            
+                            break;
+          default: break;
+      }
+        try {
+            statement_.execute(deleteFromTable);
             //connection_.commit();
-            return "This id:" + id + "is deleted from the table";
+            return "This id:" + id + "is deleted from the " + deleteFromTable;
       } catch (SQLException e) {
             e.printStackTrace();
       }
       return "Deletion failed";
     }
+
+    public boolean testValue(String id){
+      if(id.compareTo("") != 0 && id != null){
+        char[] values = id.toCharArray();
+        for(int i = 0; i < id.length(); i++){
+          if(values[i] > 57 || values[i] < 48){
+            return false;
+          }
+        }
+        return true;
+      }
+      return false;
+    }
+
+    public Vector<String> ListAllProcedures() {
+        
+        String sqlQuery = "SELECT procedureno, name "
+            + "FROM cameronsmith.Procedure";
+
+        Vector<String> result = new Vector<String>();
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String tmp = rs.getString("procedureno") + "##"
+                    + rs.getString("name");
+
+                result.add(tmp);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String DeletePatient(Integer id){
+      String deleteFromPatientTable = "DELETE FROM cameronsmith.Patient WHERE patientNo=" +
+            id;
+
+
+      try {
+            statement_.execute(deleteFromPatientTable);
+            //connection_.commit();
+            return "This id:" + id + "is deleted from the " + deleteFromPatientTable;
+      } catch (SQLException e) {
+            e.printStackTrace();
+      }
+      return "Deletion failed";
+    }
+
+    public String DeleteMulti(String idOne, String idTwo, String tablename, String columnNameOne, String columnNameTwo){
+       boolean valueWorks = testValue(idOne);
+       boolean valueWorksTwo = testValue(idTwo);
+      if(!valueWorks || !valueWorksTwo){
+          return "Deletion failed-Nan";
+      }
+      String deleteFromTable = "DELETE FROM cameronsmith."+ tablename +" WHERE "+ columnNameOne + "=" + idOne + " AND " + columnNameTwo + "=" + idTwo;
+
+      switch(tablename){
+              case "Appointment": String deleteFromAppointmentProcedure = "DELETE FROM cameronsmith.AppointmentProcedure WHERE appointmentNo=" + idOne;
+                                  
+                                   try {
+                                      statement_.execute(deleteFromAppointmentProcedure);
+                                       //connection_.commit();
+                                   } catch (SQLException e) {
+                                      e.printStackTrace();
+                                   }
+                                  
+                                  break;
+            
+              default: break;
+          }
+      try {
+            statement_.execute(deleteFromTable);
+            //connection_.commit();
+            return "This id:" + idOne + " " +idTwo + "is deleted from the " + tablename;
+      } catch (SQLException e) {
+            e.printStackTrace();
+      }
+      return "Deletion failed";
+    }
+
 
     public String DeletePatientName(Integer id){
       String deleteFromPatientTable = "DELETE FROM cameronsmith.PatientName WHERE patientNo=" +
@@ -281,6 +655,7 @@ public class DatabaseController {
       return "Deletion failed";
     }
 
+<<<<<<< HEAD
     /*---------------------------------------------------------------------
      |  Method updatePatientQuery
      |
@@ -577,4 +952,6 @@ public class DatabaseController {
 	}
     }
 
+=======
+>>>>>>> e97df7c601a1e06e1b454565ddd7bb1735286e17
 }
