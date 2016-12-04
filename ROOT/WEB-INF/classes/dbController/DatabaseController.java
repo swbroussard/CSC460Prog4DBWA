@@ -450,6 +450,15 @@ public class DatabaseController {
                             break;
           default: break;
       }
+        try {
+            statement_.execute(deleteFromTable);
+            //connection_.commit();
+            return "This id:" + id + "is deleted from the " + deleteFromTable;
+      } catch (SQLException e) {
+            e.printStackTrace();
+      }
+      return "Deletion failed";
+    }
 
     public Vector<String> ListAllProcedures() {
         
@@ -480,9 +489,9 @@ public class DatabaseController {
 
 
       try {
-            statement_.execute(deleteFromTable);
+            statement_.execute(deleteFromPatientTable);
             //connection_.commit();
-            return "This id:" + id + "is deleted from the " + tablename;
+            return "This id:" + id + "is deleted from the " + deleteFromPatientTable;
       } catch (SQLException e) {
             e.printStackTrace();
       }

@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="result">
+  <a href="index.html">Return to home page.</a>
         <%
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
@@ -15,8 +16,6 @@
             DatabaseController dbcontroller = new DatabaseController();
 
             dbcontroller.Open();
-
-            out.write("<h2>Equipment Deletion Tables</h2>");
 
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
@@ -52,6 +51,7 @@
     </div>
          <br>
          <br>
+         <h2>Equipment Deletion Tables</h2>
          <div>
          <form action="deleteActions/deleteequipment.jsp" method="GET">
                 Equipment(Delete using EquipmentNo): <br>
@@ -106,6 +106,7 @@
          <h2> Lab-Equipment Tables</h2>
          <div>
          <form action="deleteActions/deletelabequipment.jsp" method="GET">
+                Both fields required to delete an entry. <br><br>
                 Equipment(Delete using EquipmentNo): <br>
                 <input type="text" name="equipmentId"><br>
                 Lab(Delete using EquipmentNo): <br>

@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="result">
+  <a href="index.html">Return to home page.</a>
         <%
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
@@ -15,8 +16,6 @@
             DatabaseController dbcontroller = new DatabaseController();
 
             dbcontroller.Open();
-
-            out.write("<h2>Deletion Tables</h2>");
 
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
@@ -53,6 +52,7 @@
     </div>
          <br>
          <br>
+         <h2>Patient Deletion Table</h2>
          <div>
          <form action="deleteActions/deletepatient.jsp" method="GET">
                 Patient(Delete using PatientNo): <br>
@@ -69,8 +69,6 @@
             DatabaseController dbcontrollerpn = new DatabaseController();
 
             dbcontrollerpn.Open();
-
-            
 
             StringBuffer contentpn = new StringBuffer();
             contentpn.append("<br/><table>");
@@ -106,6 +104,7 @@
      <div>
          <br>
         <br>
+        <h2>Patient Names Table</h2>
          <form action="deleteActions/deletepatientname.jsp" method="GET">
                 Patient Name(Delete using PatientNo): <br>
                 <input type="text" name="patientnameid"><br>
@@ -120,8 +119,6 @@
             DatabaseController dbcontrollerpi = new DatabaseController();
 
             dbcontrollerpi.Open();
-
-            
 
             StringBuffer contentpi = new StringBuffer();
             contentpi.append("<br/><table>");
@@ -156,6 +153,7 @@
      <div>
          <br>
          <br>
+         <h2>Patient Insurance Tables</h2>
          <form action="deleteActions/deletepatientinsurance.jsp" method="GET">
                 Patient Insurance(Delete using PatientNo): <br>
                 <input type="text" name="patientinsurancenumber"><br>

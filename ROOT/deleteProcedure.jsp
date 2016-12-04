@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="result">
+  <a href="index.html">Return to home page.</a>
         <%
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
@@ -15,8 +16,6 @@
             DatabaseController dbcontroller = new DatabaseController();
 
             dbcontroller.Open();
-
-            out.write("<h2>Procedure Deletion Tables</h2>");
 
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
@@ -52,6 +51,7 @@
     </div>
          <br>
          <br>
+         <h2>Procedure Deletion Tables</h2>
          <div>
          <form action="deleteActions/deleteproceduretable.jsp" method="GET">
                 Procedure(Delete using ProcedureNo): <br>
@@ -69,8 +69,6 @@
 
             dbcontrollerpa.Open();
 
-            out.write("<h2>Appointment Procedure Deletion Table</h2>");
-
             StringBuffer contentpa = new StringBuffer();
             contentpa.append("<br/><table>");
 
@@ -79,13 +77,13 @@
                 contentpa.append("Query result is null!");
             }
 
-            contentpa.append("<tr><th>ProcedureNo</th><th>Name</th><th>Cost</th>");
+            contentpa.append("<tr><th>AppointmentNo</th><th>ProcedureNo</th>");
 
             if (vecResultpa != null && vecResultpa.size() > 0) {
                 for (int i=0; i<vecResultpa.size(); i++) {
                     String row = vecResultpa.get(i);
                     String[] detail = row.split("##");
-                    if (detail.length != 3) {
+                    if (detail.length != 2) {
                     }
                 
                     contentpa.append("<tr id=\"tablerow_>" + i + "\">");
@@ -103,6 +101,16 @@
     </div>
          <br>
          <br>
-
+         <h2>Appointment Procedure Deletion Table</h2>
+    <div>
+         <form action="deleteActions/deleteprocedureappointment.jsp" method="GET">
+                
+                Appointment(Delete using AppointmentNo): <br>
+                <input type="text" name="appointmentid"><br>
+                Procedure(Delete using ProcedureNo): <br>
+                <input type="text" name="procedureid"><br>
+                <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>

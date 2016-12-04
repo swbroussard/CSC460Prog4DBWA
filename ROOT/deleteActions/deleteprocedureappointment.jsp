@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <%@page import="java.util.*,java.lang.StringBuffer,
     dbController.DatabaseController" %>
 <head>
@@ -19,12 +19,14 @@
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
 
-            String givenname = request.getParameter("procedureid");
-            Integer procedureid = Integer.parseInt(givenname);
-            out.println(procedureid);
+            String givenNameOne = request.getParameter("appointmentid");
+            Integer appointmentid = Integer.parseInt(givenNameOne);
+            String givenNameTwo = request.getParameter("procedureid");
+            Integer procedureid = Integer.parseInt(givenNameTwo);
+            out.println(appointmentid + " " + procedureid);
            
 
-            String res = dbcontroller.Delete(procedureid, "AppointmentProcedure", "procedureNo");
+            String res = dbcontroller.DeleteMulti(appointmentid,procedureid, "AppointmentProcedure", "appointmentNo", "procedureNo");
             out.println(res);
             if (res == null) {
                 content.append("Failed to insert into the database!");
@@ -37,4 +39,3 @@
     </div>
 </body>
 </html>
- -->
