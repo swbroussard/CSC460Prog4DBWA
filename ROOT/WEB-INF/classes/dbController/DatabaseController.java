@@ -280,4 +280,301 @@ public class DatabaseController {
       }
       return "Deletion failed";
     }
+
+    /*---------------------------------------------------------------------
+     |  Method updatePatientQuery
+     |
+     |  Purpose: updates the specified patient for his or her next visit,
+     |           outstanding cost, and/or adress as a SQL statement
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      Integer id - patient's id
+     |      String nextVisit - next appointment for patient
+     |      Integer oustandingCost - outstand cost for patient or total
+     |                               owe to dentist office
+     |      String address - address of patient
+     |      
+     |
+     |  Returns: String - SQL query statement for the specified updated query
+     |                    if any
+     *-------------------------------------------------------------------*/
+
+    public String updatePatientQuery(Integer id, String nextVisit, Integer oustandingCost, String address) {
+	String sqlStat = null;
+	int field=0;
+
+	sqlStat = "UPDATE cameronsmith.Patient ";
+
+	if (!(nextVisit.equals(""))) {
+	    sqlStat = sqlStat + "SET nextVisit=" + nextVisit;
+	    field = field + 1;
+	}
+	if (!(address.equals(""))) {
+	    if (field > 0) {
+		sqlStat = ",address=" + address;
+	    }
+	    else {
+		sqlStat = "SET address=" + address;
+	    }
+	    field = field + 1;
+	}
+	if (oustandingCost >= 0) {
+	    if (field > 0) {
+		sqlStat = ",oustandingCost=" + oustandingCost;
+	    }
+	    else {
+		sqlStat = " SET oustandingCost=" + oustandingCost;
+	    }
+	    field = field + 1;
+	}
+	// returns an empty string for there is no input
+	if (nextVisit.equals("")) && (address.equals("") && oustandingCost < 0)  {
+	    return "";
+	}
+
+	sqlStat = sqlStat + " WHERE patientNo=" + id;
+
+	return sqlStat;
+    }
+
+    /*---------------------------------------------------------------------
+     |  Author: Steven Broussard
+     |
+     |  Method updatePatient
+     |
+     |  Purpose: updates the specified patient for his or her next visit,
+     |           outstanding cost, and/or adress
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      Integer id - patient's id
+     |      String nextVisit - next appointment for patient
+     |      Integer oustandingCost - outstand cost for patient or total
+     |                               owe to dentist office
+     |      String address - address of patient
+     |      
+     |
+     |  Returns: String - the status of updated information about Patient Table
+     *-------------------------------------------------------------------*/
+
+    public String updatePatient(Integer id, String nextVisit, Interger oustandingCost, String address) {
+	String status = null;
+	String sqlStat = null;
+	
+	sqlStat = updatePatientQuery(id, nextVisit, oustandingCost, address);
+
+	if (sqlStat.equals("")) {
+	    return "No fields to update."
+	}
+	else {
+	    try {
+		statement_.execute(sqlStat);
+		status="updated ";
+		if (!(nextVisit.equals(""))) {
+		    status = status + "nextVisit ";
+		}
+		if (!(address.equals(""))) {
+		    status = status + "address ";
+		}
+		if (oustandingCost >= 0) {
+		    status = status + "oustandingCost";
+		}
+		return status
+	    }
+	    catch(SQLException s) {
+		System.out.println("Something is wrong with the update statement for Patient Table.");
+		s.printStackTrace();
+	    }
+	}
+	
+    }
+    /*---------------------------------------------------------------------
+     |  Author: Steven Broussard
+     |
+     |  Method updatePatientNameQuery
+     |
+     |  Purpose: updates the specified patient for his or her given name
+     |           and surname as a SQL statement
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      Integer id - patient's id
+     |      String givenname - first name of patient
+     |      String surnam - last name of patient
+     |      
+     |
+     |  Returns: String - SQL query statement for the specified updated query
+     |                    if any
+     *-------------------------------------------------------------------*/
+
+    public String updatePatientNameQuery(Integer id, String givenname, String surname) {
+	String sqlStat = null;
+	int field=0;
+
+	sqlStat = "UPDATE cameronsmith.PatientName ";
+
+	if (!(givenname.equals(""))) {
+	    sqlStat = sqlStat + "SET givenname=" + givenname;
+	    field = field + 1;
+	}
+	if (!(surname.equals(""))) {
+	    if (field > 0) {
+		sqlStat = ",surname=" + surname;
+	    }
+	    else {
+		sqlStat = "SET surname=" + surname;
+	    }
+	    field = field + 1;
+	}
+	// returns an empty string for there is no input
+	if (givenname.equals("")) && (surname.equals(""))  {
+	    return "";
+	}
+
+	sqlStat = sqlStat + " WHERE patientNo=" + id;
+
+	return sqlStat;
+    }
+
+    /*---------------------------------------------------------------------
+     |  Author: Steven Broussard
+     |
+     |  Method updatePatientName
+     |
+     |  Purpose: updates the specified patient for his or her given name
+     |           and surname
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      Integer id - patient's id
+     |      String givenname - first name of patient
+     |      String surnam - last name of patient
+     |      
+     |
+     |  Returns: String - Status of updated information about PatientName Table
+     *-------------------------------------------------------------------*/
+
+    public String updatePatientName(Integer id, String givenname, String surnam) {
+	String status = null;
+	String sqlStat = null;
+	
+	sqlStat = updatePatientNameQuery(id, givenname, surname);
+
+	if (sqlStat.equals("")) {
+	    return "No fields to update."
+	}
+	else {
+	    try {
+		statement_.execute(sqlStat);
+		status="updated ";
+		if (!(givenname.equals(""))) {
+		    status = status + "givenname ";
+		}
+		if (!(address.equals(""))) {
+		    status = status + "surname";
+		}
+		return status;
+	    }
+	    catch(SQLException s) {
+		System.out.println("Something is wrong with the update statement for PatientName Table.");
+		s.printStackTrace();
+	    }
+	}
+    }
+
+    /*---------------------------------------------------------------------
+     |  Author: Steven Broussard
+     |
+     |  Method updatePatientInsuranceQuery
+     |
+     |  Purpose: updates the specified patient for his or her insurance privader as a SQL statement
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      Integer id - patient's id
+     |      String insuranceProv - insurance provider of patient
+     |      
+     |
+     |  Returns: String - SQL query statement for the specified updated query
+     |                    if any
+     *-------------------------------------------------------------------*/
+
+    public String updatePatientInsuranceQuery (Integer id,  String insuranceProv) {
+	String sqlStat = null;
+
+	sqlStat = "UPDATE cameronsmith.PatientInsurance ";
+
+	if (!(insuranceProv.equals(""))) {
+	    sqlStat = sqlStat + "SET insuranceProv=" + insuranceProv;
+	}
+	// returns an empty string for there is no input
+	if (insuranceProv.equals(""))  {
+	    return "";
+	}
+
+	sqlStat = sqlStat + " WHERE patientNo=" + id;
+
+	return sqlStat;
+    }
+
+    /*---------------------------------------------------------------------
+     |  Author: Steven Broussard
+     |
+     |  Method updatePatientInsurance
+     |
+     |  Purpose: updates the specified patient for his or her insurance privader
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      Integer id - patient's id
+     |      String insuranceProv - insurance provider of patient
+     |      
+     |
+     |  Returns: String - status of updated information in PatientInsurance Table
+     *-------------------------------------------------------------------*/
+
+    public String updatePatientInsurance(Integer id, String insuranceProv) {
+	String status = null;
+	String sqlStat = null;
+	
+	sqlStat = updatePatientNameQuery(id,insuranceProv);
+
+	if (sqlStat.equals("")) {
+	    return "No fields to update."
+	}
+	else {
+	    try {
+		statement_.execute(sqlStat);
+		status="updated ";
+		if (!(givenname.equals(""))) {
+		    status = status + "insuranceProv";
+		}
+		return status;
+	    }
+	    catch(SQLException s) {
+		System.out.println("Something is wrong with the update statement for PatientInsurance Table.");
+		s.printStackTrace();
+	    }
+	}
+    }
+
 }
