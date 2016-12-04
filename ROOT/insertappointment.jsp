@@ -17,7 +17,6 @@
             dbcontroller.Open();
 
             StringBuffer content = new StringBuffer();
-//            content.append("<br/><table>");
 
             String patientNo = request.getParameter("patientno");
             String day = request.getParameter("day");
@@ -77,11 +76,32 @@
                     break;
             }
 
-            content.append(patientNo + " " + day + " " + monthString + " " + year 
-                + " " + procedureNo);
+            String date = day + "-" + monthString + "-" + year.substring(2);
 
             if (!validDate) {
-                content.append("\nInvalid date!");
+                content.append("<br/>Invalid date!");
+            } else {
+                String result = dbcontroller.insertAppointment(patientNo, date,
+                    procedureNo);
+
+                if (result == null) {
+                    content.append("Failed to insert the appointment.");
+                }
+
+                if (result != null) {
+//                    out.write(result);
+                    content.append("<br/><table>");
+
+                    String[] details = result.split("##");
+                    content.append("<tr><th>appointmentNo</th><th>" +
+                        "PatientNo</th><th>Date</th><th>ProcedureNo</th></tr>");
+                    content.append("<tr><td>" + details[0] + "</td><td>"
+                        + details[1] + "</td><td>" 
+                        + details[2].split(" ")[0] + "</td><td>"
+                        + details[3] + "</td></tr>");
+
+                    content.append("</table>");
+                }
             }
 
             out.write(content.toString());
