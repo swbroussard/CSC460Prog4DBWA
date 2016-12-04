@@ -196,6 +196,52 @@ public class DatabaseController {
         return toReturn;
    }
 
+    public String insertAppointment(String patientno, String date, 
+            String procedureno) {
+
+        String maxAppNo = "SELECT MAX(appointmentno) "
+            + "FROM cameronsmith.Appointment";
+
+        Integer nextAppNo = null;
+        try {
+            ResultSet rs = statement_.executeQuery(maxAppNo);
+
+            rs.next();
+            nextAppNo = new Integer(rs.getString("max(appointmentno)"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String insertAppointment = "INSERT INTO cameronsmith.Appointment "
+            + "VALUES (" + (nextAppNo + 1) + ", " + patientno + ", '" + date + "')";
+        String insertAppProc = "INSERT INTO cameronsmith.AppointmentProcedure "
+            + "VALUES (" + (nextAppNo + 1) + ", " + procedureno + ")";
+
+        try {
+            statement_.executeUpdate(insertAppointment);
+            statement_.executeUpdate(insertAppProc);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        String newApp = "SELECT a.appointmentno, patientno, day, procedureno "
+            + "FROM cameronsmith.Appointment a, cameronsmith.AppointmentProcedure ap "
+            + "WHERE a.appointmentno=ap.appointmentno"
+            + "  AND a.appointmentno=" + (nextAppNo + 1);
+        try {
+            ResultSet rs = statement_.executeQuery(newApp);
+
+            rs.next();
+            return rs.getString("appointmentno") + "##"
+                + rs.getString("patientno") + "##" + rs.getString("day") + "##"
+                + rs.getString("procedureno");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public Vector<String> CommonProcedure() {
         
         String sqlQuery = "SELECT name, count(name) as occurence "
