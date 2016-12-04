@@ -6,7 +6,10 @@
 </head>
 <body>
    <input type="button" id="demo_button" value="Demo" onClick="Demo()"/> 
-   <input type="button" id="delete_button" value="Deletion Page" onClick="Delete()"/> 
+   <input type="button" id="delete_button" value="Patient Deletion Page" onClick="Delete()"/> 
+   <input type="button" id="appointment_button" value="Appointment Deletion Page" onClick="Appointment()"/> 
+   <input type="button" id="appointment_button" value="Procedure Deletion Page" onClick="Procedure()"/> 
+   <input type="button" id="appointment_button" value="Equipment and Lab Deletion Page" onClick="EquipmentAndLab()"/> 
     <div>
         <p>Insert new patient:<br></p>
         <form action="insertpatient.jsp" method="GET">
@@ -31,14 +34,6 @@
             <input type="text" name="outstandingcosts"><br/>
             <input type="submit" value="Find Outstanding Costs">
         </form>
-    </div>
-
-    <div>
-     <form action="deletepatient.jsp" method="GET">
-            Patient ID: <br>
-            <input type="text" name="patientid"><br>
-            <input type="submit" value="Delete Record">
-    </form>
     </div>
 </body>
 </html>

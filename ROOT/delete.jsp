@@ -47,18 +47,20 @@
                 }
             }
             out.write(content.toString());
-
+            dbcontroller.Commit();
             dbcontroller.Close();
         %>
     </div>
-    <div>
-     <form action="deletepatient.jsp" method="GET">
-            Patient ID: <br>
-            <input type="text" name="patientid"><br>
-            <input type="submit" value="Submit">
-    </form>
+         <br>
+         <br>
+         <div>
+         <form action="deleteActions/deletepatient.jsp" method="GET">
+                Patient(Delete using PatientNo): <br>
+                <input type="text" name="patientid"><br>
+                <input type="submit" value="Submit">
+        </form>
     </div>
-
+    
      <div id="resultNames">
         <%
             request.setCharacterEncoding("UTF-8");
@@ -97,16 +99,68 @@
                 }
             }
             out.write(contentpn.toString());
-
+            dbcontrollerpn.Commit();
             dbcontrollerpn.Close();
         %>
     </div>
-    <div>
-     <form action="deletepatientname.jsp" method="GET">
-            Patient Name ID: <br>
-            <input type="text" name="patientnameid"><br>
-            <input type="submit" value="Submit">
-    </form>
+     <div>
+         <br>
+        <br>
+         <form action="deleteActions/deletepatientname.jsp" method="GET">
+                Patient Name(Delete using PatientNo): <br>
+                <input type="text" name="patientnameid"><br>
+                <input type="submit" value="Submit">
+        </form>
+    </div>
+     <div id="resultInsurance">
+        <%
+            request.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
+
+            DatabaseController dbcontrollerpi = new DatabaseController();
+
+            dbcontrollerpi.Open();
+
+            
+
+            StringBuffer contentpi = new StringBuffer();
+            contentpi.append("<br/><table>");
+
+            Vector<String> vecResultpi = dbcontrollerpi.FindAllPatientInsurance();
+            if (vecResultpi == null) {
+                contentpi.append("Query result is null!");
+            }
+
+            contentpi.append("<tr><th>PatientNo</th><th>InsuranceProv</th>");
+
+            if (vecResultpi != null && vecResultpi.size() > 0) {
+                for (int i=0; i<vecResultpi.size(); i++) {
+                    String row = vecResultpi.get(i);
+                    String[] detail = row.split("##");
+                    if (detail.length != 3) {
+                    }
+                
+                    contentpi.append("<tr id=\"tablerow_>" + i + "\">");
+                    contentpi.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
+                        + "\"><b>" + detail[0] + "</b></a></td>");
+                    contentpi.append("<td><a href=\"javascript:void(0)\" >"
+                        + "<b>" + detail[1] + "</b></a></td>");
+                    contentpi.append("</tr>");
+                }
+            }
+            out.write(contentpi.toString());
+            dbcontrollerpi.Commit();
+            dbcontrollerpi.Close();
+        %>
+    </div>
+     <div>
+         <br>
+         <br>
+         <form action="deleteActions/deletepatientinsurance.jsp" method="GET">
+                Patient Insurance(Delete using PatientNo): <br>
+                <input type="text" name="patientinsurancenumber"><br>
+                <input type="submit" value="Submit">
+        </form>
     </div>
 </body>
 </html>
