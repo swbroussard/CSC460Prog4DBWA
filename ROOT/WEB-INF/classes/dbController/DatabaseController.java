@@ -456,6 +456,36 @@ public class DatabaseController {
         return null;
     }
 
+    public Vector<String> FindPatientInformation(String firstName, String lastName) {
+        boolean firstNameNull = firstName.length() == 0;
+        boolean lastNameNull = lastName.length() == 0;
+        String sql_query = null;
+
+        if(firstNameNull){
+         sql_query = "Select cameronsmith.PatientName.patientNo, givenname, surname, address, insuranceProv From cameronsmith.PatientName, cameronsmith.Patient, cameronsmith.PatientInsurance WHERE cameronsmith.PatientName.surname LIKE '%" + lastName + "%' AND cameronsmith.PatientName.PatientNo = cameronsmith.Patient.PatientNo AND cameronsmith.PatientName.PatientNo = cameronsmith.PatientInsurance.PatientNo";
+        }else if(lastNameNull){
+          sql_query = "Select cameronsmith.PatientName.patientNo, givenname, surname, address, insuranceProv From cameronsmith.PatientName, cameronsmith.Patient, cameronsmith.PatientInsurance WHERE cameronsmith.PatientName.givenname LIKE '%" + firstName + "%' AND cameronsmith.PatientName.PatientNo = cameronsmith.Patient.PatientNo AND cameronsmith.PatientName.PatientNo = cameronsmith.PatientInsurance.PatientNo";
+        }else{
+          sql_query = "Select cameronsmith.PatientName.patientNo, givenname, surname, address, insuranceProv From cameronsmith.PatientName, cameronsmith.Patient, cameronsmith.PatientInsurance WHERE cameronsmith.PatientName.givenname LIKE '%" + firstName + "%' AND cameronsmith.PatientName.surname LIKE '%" + lastName  + "%' AND cameronsmith.PatientName.PatientNo = cameronsmith.Patient.PatientNo AND cameronsmith.PatientName.PatientNo = cameronsmith.PatientInsurance.PatientNo";
+        }
+
+       try {
+          ResultSet rs  = statement_.executeQuery(sql_query);
+          Vector<String> result_lab = new Vector<String>();
+          while (rs.next()) {
+             String temp_record = rs.getString("patientNo") + "##" 
+                + rs.getString("givenname")+ "##" 
+                + rs.getString("surname")+ "##" 
+                + rs.getString("address")+ "##" 
+                + rs.getString("insuranceProv"); 
+            result_lab.add(temp_record);
+          }
+          return result_lab;
+        } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+        }
+        return null;
+    }
 
     public String Delete(String id, String tablename, String columnname){
       boolean valueWorks = testValue(id);
