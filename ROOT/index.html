@@ -3,59 +3,236 @@
     <title>CS 460 - Project 4</title>
     <meta charset="UTF-8"/>
     <script type="text/javascript" src="scripts/jspCaller.js"></script>
+	<script type="text/javascript">
+		function switchToPatient() {
+			document.getElementById("patientFrame").style.display = 'block';
+			document.getElementById("appointmentFrame").style.display = 'none';
+			document.getElementById("procedureFrame").style.display = 'none';
+			document.getElementById("labFrame").style.display = 'none';
+			document.getElementById("equipmentFrame").style.display = 'none';
+		}
+		function switchToAppointment() {
+			document.getElementById("patientFrame").style.display = 'none';
+			document.getElementById("appointmentFrame").style.display = 'block';
+			document.getElementById("procedureFrame").style.display = 'none';
+			document.getElementById("labFrame").style.display = 'none';
+			document.getElementById("equipmentFrame").style.display = 'none';
+		}
+		function switchToProcedure() {
+			document.getElementById("patientFrame").style.display = 'none';
+			document.getElementById("appointmentFrame").style.display = 'none';
+			document.getElementById("procedureFrame").style.display = 'block';
+			document.getElementById("labFrame").style.display = 'none';
+			document.getElementById("equipmentFrame").style.display = 'none';
+		}
+		function switchToLab() {
+			document.getElementById("patientFrame").style.display = 'none';
+			document.getElementById("appointmentFrame").style.display = 'none';
+			document.getElementById("procedureFrame").style.display = 'none';
+			document.getElementById("labFrame").style.display = 'block';
+			document.getElementById("equipmentFrame").style.display = 'none';
+		}
+		function switchToEquipment() {
+			document.getElementById("patientFrame").style.display = 'none';
+			document.getElementById("appointmentFrame").style.display = 'none';
+			document.getElementById("procedureFrame").style.display = 'none';
+			document.getElementById("labFrame").style.display = 'none';
+			document.getElementById("equipmentFrame").style.display = 'block';
+		}
+	</script>
+	<style>
+            header {
+                position: absolute;
+                background-color: steelblue;
+                top: 0;
+                left: 0;
+                color: black;
+                font-size: 30px;
+                padding-left: 20px;
+                height: 50px;
+                width: 100%;
+            }
+			
+			div {
+				margin-top: 5px;
+			}
+			
+			p {
+				color: steelblue;
+			}
+
+			input {
+				margin-top: 5px;
+			}
+			
+			button {
+				margin-bottom: 10px;
+			}
+
+            .tableSide {
+                width: 50%;
+                float: left;
+            }
+
+            .frame {
+                width: 100%;
+                display: inline-block;
+                margin: auto;
+                position: relative;
+                margin-top: 75px;
+            }
+
+            .querySide {
+                width: 48%;
+                height: 50%;
+                float: left;
+            }
+			
+			#navButtons {
+				width: 100%;
+				display: inline;
+				padding-bottom: 10px;
+			}
+
+			#displayFrame {
+				display: none;
+			}
+
+			.patientFrame {
+				display: block;
+			}
+        </style>
 </head>
 <body>
-   <input type="button" id="demo_button" value="Demo" onClick="Demo()"/> 
-
-   <input type="button" id="delete_button" value="Patient Deletion Page" onClick="Delete()"/> 
-   <input type="button" id="appointment_button" value="Appointment Deletion Page" onClick="Appointment()"/> 
-   <input type="button" id="appointment_button" value="Procedure Deletion Page" onClick="Procedure()"/> 
-   <input type="button" id="appointment_button" value="Equipment and Lab Deletion Page" onClick="EquipmentAndLab()"/> 
-    <div>
-        <p>Insert new patient:<br></p>
-        <form action="insertpatient.jsp" method="GET">
-            First name: <br>
-            <input type="text" name="givenname"><br>
-            Last name: <br>
-            <input type="text" name="surname"><br>
-            Address: <br>
-            <input type="text" name="address"><br>
-            Insurance Provider: <br>
-            <input type="text" name="insuranceProv"><br>
-            <input type="submit" value="Submit">
-        </form>
+	<header>
+		DB Dentistry
+	</header>
+    <div class="frame">
+		<!-- <input type="button" id="demo_button" value="click me" onClick="Demo()"/> -->
+		<div id="navButtons">
+			<button type="button" onclick="switchToPatient()">Patient</button>
+			<button type="button" onclick="switchToAppointment()">Appointment</button>
+			<button type="button" onclick="switchToProcedure()">Procedure</button>
+			<button type="button" onclick="switchToLab()">Lab</button>
+			<button type="button" onclick="switchToEquipment()">Equipment</button>
+		</div>
+		<div id="patientFrame" class="displayFrame">
+			<div class="querySide">
+			<p>Insert new patient:<br></p>
+				<form action="insertpatient.jsp" method="GET">
+					Patient Number:<br>
+					<input type="text" name="patientNo"><br>
+					First name: <br>
+					<input type="text" name="givenname"><br>
+					Last name: <br>
+					<input type="text" name="surname"><br>
+					Address: <br>
+					<input type="text" name="address"><br>
+					Insurance Provider: <br>
+					<input type="text" name="insuranceProv"><br>
+					<input type="submit" value="Submit">
+				</form>
+				<p>Drop patient:<br></p>
+				<form action="deletepatient.jsp" method="GET">
+					Insert Patient Number: <br>
+					<input type="text" name="patientNo"><br>
+					<input type="submit" value="Drop">
+				</form>
+				<div>
+					<input type="button" id="proc_search" 
+					value="List most common procedure of 2016" onClick="commonProc()"/>
+				</div>
+			</div>
+			<div class="table-side">
+			</div>
+		</div>
+		<div id="appointmentFrame" class="displayFrame">
+			<div class="querySide">
+			<p>Insert new appointment:<br></p>
+				<form action="insertappointment.jsp" method="GET">
+					Appointment Number:<br>
+					<input type="text" name="appointmentNo"><br>
+					Patient Number:<br>
+					<input type="text" name="patientNo"><br>
+					<p>Date:</p>
+					Day:<br>
+					<input type="text" name="day"><br>
+					Month:<br>
+					<input type="text" name="month"><br>
+					Year:<br>
+					<input type="text" name="year"><br>
+					<input type="submit" value="Submit">
+				</form>
+				<p>Delete appointment:<br></p>
+				<form action="deleteappointment.jsp" method="GET">
+					Insert Appointment Number: <br>
+					<input type="text" name="appointmentNo"><br>
+					<input type="submit" value="Drop">
+				</form>
+			</div>
+			<div class="table-side">
+			</div>
+		</div>
+		<div id="procedureFrame" class="displayFrame">
+			<div class="querySide">
+			<p>Insert new procedure:<br></p>
+				<form action="insertprocedure.jsp" method="GET">
+					Procedure Number:<br>
+					<input type="text" name="procedureNo"><br>
+					Name:<br>
+					<input type="text" name="name"><br>
+					Cost:<br>
+					<input type="text" name="cost"><br>
+					Length:<br>
+					<input type="text" name="length"><br>
+					<input type="submit" value="Submit">
+				</form>
+				<p>Drop patient:<br></p>
+				<form action="deletepatient.jsp" method="GET">
+					Insert Patient Number: <br>
+					<input type="text" name="patientNo"><br>
+					<input type="submit" value="Drop">
+				</form>
+			</div>
+		</div>
+		<div id="labFrame" class="displayFrame">
+			<div class="querySide">
+			<p>Insert new procedure:<br></p>
+				<form action="insertlab.jsp" method="GET">
+					Lab Number:<br>
+					<input type="text" name="labNo"><br>
+					Lab Name:<br>
+					<input type="text" name="name"><br>
+					<input type="submit" value="Submit">
+				</form>
+				<p>Drop patient:<br></p>
+				<form action="deletelab.jsp" method="GET">
+					Insert Patient Number: <br>
+					<input type="text" name="patientNo"><br>
+					<input type="submit" value="Drop">
+				</form>
+			</div>
+		</div>
+		<div id="equipmentFrame" class="displayFrame">
+			<div class="querySide">
+			<p>Insert new procedure:<br></p>
+				<form action="insertequipment.jsp" method="GET">
+					Equipment Number:<br>
+					<input type="text" name="equipmentNo"><br>
+					Name:<br>
+					<input type="text" name="name"><br>
+					Cost:<br>
+					<input type="text" name="cost"><br>
+					<input type="submit" value="Submit">
+				</form>
+				<p>Sell equipment (for no money):<br></p>
+				<form action="deleteequipment.jsp" method="GET">
+					Insert Equipment Number: <br>
+					<input type="text" name="equipmentNo"><br>
+					<input type="submit" value="Sell">
+				</form>
+			</div>
+		</div>
     </div>
-
-   <!--<input type="button" id="delete_button" value="Deletion Page" onClick="Delete()"/> -->
-   <br/><br/>
-    <a href="insert.jsp">Click here to insert into a new patient, lab,
-        equipment, or appointment.</a>
-    <br/>
-    <h2>Queries</h2>
-
-    <div>
-        <input type="button" id="proc_search" 
-            value="List most common procedure of 2016" onClick="commonProc()"/>
-    </div>
-    <br/>
-    <div>
-        <form action="findoutstandingcosts.jsp" method="GET">
-            Find outstanding costs greater than: 
-            <input type="text" name="outstandingcosts"><br/>
-            <input type="submit" value="Find Outstanding Costs">
-        </form>
-    </div>
-
-    <div>
-        <h3> Find complete patient information</h3>
-        <form action="findpatientinformation.jsp" method="GET">
-            Find a patient by first name: 
-            <input type="text" name="firstname"><br/>
-            Find a patient by last name: 
-            <input type="text" name="lastname"><br/>
-            <input type="submit" value="Find Outstanding Costs">
-        </form>
-    </div>
-
 </body>
 </html>
