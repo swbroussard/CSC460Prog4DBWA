@@ -19,12 +19,12 @@
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
 
-            String equipmentNo = request.getParameter("equipmentId");
-            //Integer equipmentNo = Integer.parseInt(givenname);
-            out.println(equipmentNo);
+            String procedureid = request.getParameter("procedurelengthid");
+           // Integer procedureid = Integer.parseInt(givenname);
+            out.println(procedureid);
            
 
-            String res = dbcontroller.Delete(equipmentNo, "Equipment", "equipmentNo");
+            String res = dbcontroller.Delete(procedureid, "ProcedureLength", "procedureNo");
             out.println(res);
             if (res == null) {
                 content.append("Failed to insert into the database!");

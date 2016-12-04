@@ -19,10 +19,10 @@
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
 
-           String givenEquipmentname = request.getParameter("equipmentId");
-            Integer equipmentID = Integer.parseInt(givenEquipmentname);
-            String givenLabNo = request.getParameter("labId");
-            Integer labID = Integer.parseInt(givenLabNo);
+           String equipmentID = request.getParameter("equipmentId");
+           // Integer equipmentID = Integer.parseInt(givenEquipmentname);
+            String labID = request.getParameter("labId");
+            //Integer labID = Integer.parseInt(givenLabNo);
             out.println(labID + " " + equipmentID);
            
 

@@ -112,5 +112,55 @@
                 <input type="submit" value="Submit">
         </form>
     </div>
+
+      <div id="result">
+        <%
+            request.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
+
+            DatabaseController dbcontrollerpl = new DatabaseController();
+
+            dbcontrollerpl.Open();
+
+            StringBuffer contentpl = new StringBuffer();
+            contentpl.append("<br/><table>");
+
+            Vector<String> vecResultpl = dbcontrollerpl.FindAllProcedureLengths();
+            if (vecResultpl == null) {
+                contentpl.append("Query result is null!");
+            }
+
+            contentpl.append("<tr><th>ProcedureNo</th><th>Length</th>");
+
+            if (vecResultpl != null && vecResultpl.size() > 0) {
+                for (int i=0; i<vecResultpl.size(); i++) {
+                    String row = vecResultpl.get(i);
+                    String[] detail = row.split("##");
+                    if (detail.length != 2) {
+                    }
+                
+                    contentpl.append("<tr id=\"tablerow_>" + i + "\">");
+                    contentpl.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
+                        + "\"><b>" + detail[0] + "</b></a></td>");
+                    contentpl.append("<td><a href=\"javascript:void(0)\" >"
+                        + "<b>" + detail[1] + "</b></a></td>");
+                    contentpl.append("</tr>");
+                }
+            }
+            out.write(contentpl.toString());
+            dbcontrollerpl.Commit();
+            dbcontrollerpl.Close();
+        %>
+    </div>
+         <br>
+         <br>
+         <h2>Procedure Length Deletion Table</h2>
+    <div>
+         <form action="deleteActions/deleteprocedurelength.jsp" method="GET">
+                Procedure(Delete using ProcedureNo): <br>
+                <input type="text" name="procedurelengthid"><br>
+                <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>

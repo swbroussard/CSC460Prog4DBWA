@@ -180,6 +180,23 @@ public class DatabaseController {
     return null;
   }
 
+    public Vector<String> FindAllProcedureLengths() {
+    String sql_query = "SELECT * FROM cameronsmith.ProcedureLength";
+   try {
+      ResultSet rs  = statement_.executeQuery(sql_query);
+      Vector<String> result_procedure = new Vector<String>();
+      while (rs.next()) {
+         String temp_record = rs.getString("procedureNo") + "##" 
+            + rs.getString("length"); 
+        result_procedure.add(temp_record);
+      }
+      return result_procedure;
+    } catch (SQLException sqlex) {
+      sqlex.printStackTrace();
+    }
+    return null;
+  }
+
    public Vector<String> FindAllAppointmentProcedures() {
     String sql_query = "SELECT * FROM cameronsmith.AppointmentProcedure";
    try {
@@ -394,7 +411,11 @@ public class DatabaseController {
     }
 
 
-    public String Delete(Integer id, String tablename, String columnname){
+    public String Delete(String id, String tablename, String columnname){
+      boolean valueWorks = testValue(id);
+      if(!valueWorks){
+          return "Deletion failed-Nan";
+      }
       String deleteFromTable = "DELETE FROM cameronsmith."+ tablename +" WHERE "+ columnname + "=" + id;
 
       switch(tablename){
@@ -460,6 +481,19 @@ public class DatabaseController {
       return "Deletion failed";
     }
 
+    public boolean testValue(String id){
+      if(id.compareTo("") != 0 && id != null){
+        char[] values = id.toCharArray();
+        for(int i = 0; i < id.length(); i++){
+          if(values[i] > 57 || values[i] < 48){
+            return false;
+          }
+        }
+        return true;
+      }
+      return false;
+    }
+
     public Vector<String> ListAllProcedures() {
         
         String sqlQuery = "SELECT procedureno, name "
@@ -498,8 +532,12 @@ public class DatabaseController {
       return "Deletion failed";
     }
 
-    public String DeleteMulti(Integer idOne, Integer idTwo, String tablename, String columnNameOne, String columnNameTwo){
-
+    public String DeleteMulti(String idOne, String idTwo, String tablename, String columnNameOne, String columnNameTwo){
+       boolean valueWorks = testValue(idOne);
+       boolean valueWorksTwo = testValue(idTwo);
+      if(!valueWorks || !valueWorksTwo){
+          return "Deletion failed-Nan";
+      }
       String deleteFromTable = "DELETE FROM cameronsmith."+ tablename +" WHERE "+ columnNameOne + "=" + idOne + " AND " + columnNameTwo + "=" + idTwo;
 
       switch(tablename){

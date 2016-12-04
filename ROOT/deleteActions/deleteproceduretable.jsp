@@ -19,8 +19,8 @@
             StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
 
-            String givenname = request.getParameter("procedureid");
-            Integer procedureid = Integer.parseInt(givenname);
+            String procedureid = request.getParameter("procedureid");
+            //Integer procedureid = Integer.parseInt(givenname);
             out.println(procedureid);
            
 
