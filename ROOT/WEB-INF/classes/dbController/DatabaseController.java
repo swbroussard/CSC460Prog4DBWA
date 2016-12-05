@@ -486,6 +486,49 @@ public class DatabaseController {
         }
         return null;
     }
+	
+	/*---------------------------------------------------------------------
+     |  Author: Steven Adler
+	 |
+	 |  Method findVisits
+     |
+     |  Purpose: finds the number of visits of all patients in descending order
+     |
+     |  Pre-condition: none
+     |
+     |  Post-condition: none
+     |
+     |  Parameters:
+     |      none
+     |
+     |  Returns: Vector<String> - 
+     *-------------------------------------------------------------------*/
+	public Vector<String> FindVisits() {
+        String sql_query = null;
+        
+        sql_query = "SELECT cameronsmith.Patient.PatientNo, cameronsmith.givenname, cameronsmith.surname, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty"
+					+ "FROM cameronsmith.PatientName, cameronsmith.Appointment"
+					+ "WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo"
+					+ "GROUP BY cameronsmith.Patient.PatientNo"
+					+ "ORDER BY Loyalty DESC";
+
+		try {
+			ResultSet rs  = statement_.executeQuery(sql_query);
+			Vector<String> result_lab = new Vector<String>();
+			while (rs.next()) {
+				String temp_record = rs.getString("patientNo") + "##" 
+					+ rs.getString("givenname")+ "##" 
+					+ rs.getString("surname")+ "##" 
+					+ rs.getString("address")+ "##" 
+					+ rs.getString("insuranceProv"); 
+				result_lab.add(temp_record);
+			}
+          return result_lab;
+        } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+        }
+        return null;
+    }
 
     public String Delete(String id, String tablename, String columnname){
       boolean valueWorks = testValue(id);
