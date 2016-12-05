@@ -10,122 +10,49 @@
 		DB Dentistry
 	</header>
     <div class="frame">
-		<div id="navButtons">
-		<form action='insert.jsp'>
-			<input type="submit" value="Insert"><br>
-		</form>
-		<form action='delete.jsp'>
-			<input type="submit" value="Delete"><br>
-		</form>
-		<form action='update.jsp'>
-			<input type="submit" value="Update"><br>
-		</form>
-		</div>
-		<!--  <div id="patientFrame" class="displayFrame">
-			<div class="querySide">
-			<p>Insert new patient:<br></p>
-				<form action="insertpatient.jsp" method="GET">
-					First name: <br>
-					<input type="text" name="givenname"><br>
-					Last name: <br>
-					<input type="text" name="surname"><br>
-					Address: <br>
-					<input type="text" name="address"><br>
-					Insurance Provider: <br>
-					<input type="text" name="insuranceProv"><br>
-					<input type="submit" value="Submit">
+		<div id="leftSide" class="buttonPanel">
+			<div id="navButtons">
+				<form action='insert.jsp'>
+					<p>Insert patient, appointment, etc.</p>
+					<input type="submit" value="Insert"><br>
 				</form>
-				<p>Drop patient:<br></p>
-				<form action="deletepatient.jsp" method="GET">
-					Insert Patient Number: <br>
-					<input type="text" name="patientNo"><br>
-					<input type="submit" value="Drop">
+				<form action='delete.jsp'>
+					<p>Delete from tables</p>
+					<input type="submit" value="Delete"><br>
 				</form>
-				<div>
-					<input type="button" id="proc_search" 
-					value="List most common procedure of 2016" onClick="commonProc()"/>
-				</div>
-			</div>
-		</div>
-		<div id="appointmentFrame" class="displayFrame">
-			<div class="querySide">
-			<p>Insert new appointment:<br></p>
-				<form action="insertappointment.jsp" method="GET">
-					Patient Number:<br>
-					<input type="text" name="patientNo"><br>
-					<p>Date:</p>
-					Day:<br>
-					<input type="text" name="day"><br>
-					Month:<br>
-					<input type="text" name="month"><br>
-					Year:<br>
-					<input type="text" name="year"><br>
-					<input type="submit" value="Submit">
+				<form action='update.jsp'>
+					<p>Update patient records</p>
+					<input type="submit" value="Update"><br>
 				</form>
-				<p>Delete appointment:<br></p>
-				<form action="deleteappointment.jsp" method="GET">
-					Insert Appointment Number: <br>
-					<input type="text" name="appointmentNo"><br>
-					<input type="submit" value="Drop">
+				<form action='findoutstandingcosts.jsp' method='GET'>
+					<p>Find patients with outstanding costs greater than input value</p>
+					<input type="text" name="outstandingcosts"><br>
+					<input type="submit" value="Calculate"><br>
 				</form>
-			</div>
-			<div class="table-side">
-			</div>
-		</div>
-		<div id="procedureFrame" class="displayFrame">
-			<div class="querySide">
-			<p>Insert new procedure:<br></p>
-				<form action="insertprocedure.jsp" method="GET">
-					Name:<br>
-					<input type="text" name="name"><br>
-					Cost:<br>
-					<input type="text" name="cost"><br>
-					Length:<br>
-					<input type="text" name="length"><br>
-					<input type="submit" value="Submit">
-				</form>
-				<p>Drop patient:<br></p>
-				<form action="deletepatient.jsp" method="GET">
-					Insert Patient Number: <br>
-					<input type="text" name="patientNo"><br>
-					<input type="submit" value="Drop">
+				<form action='findpatientinformation.jsp' method='GET'>
+					<p>Find patient(s) with input name</p>
+					First:
+					<input type="text" name="firstname"><br>
+					Last:
+					<input type="text" name="lastname"><br>
+					<input type="submit" value="Find">
 				</form>
 			</div>
 		</div>
-		<div id="labFrame" class="displayFrame">
-			<div class="querySide">
-			<p>Insert new procedure:<br></p>
-				<form action="insertlab.jsp" method="GET">
-					Lab Name:<br>
-					<input type="text" name="name"><br>
-					<input type="submit" value="Submit">
-				</form>
-				<p>Drop patient:<br></p>
-				<form action="deletelab.jsp" method="GET">
-					Insert Patient Number: <br>
-					<input type="text" name="patientNo"><br>
-					<input type="submit" value="Drop">
-				</form>
-			</div>
+		<div id="rightSide" class="buttonPanel">
+			<form action="viewPatients.jsp">
+				<p>View patients</p>
+				<input type="submit" value="View">
+			</form>
+			<form action="viewAppointments.jsp">
+				<p>View appointments</p>
+				<input type="submit" value="View">
+			</form>
+			<form action="viewProcedures.jsp">
+				<p>View procedures</p>
+				<input type="submit" value="View">
+			</form>
 		</div>
-		<div id="equipmentFrame" class="displayFrame">
-			<div class="querySide">
-			<p>Insert new procedure:<br></p>
-				<form action="insertequipment.jsp" method="GET">
-					Name:<br>
-					<input type="text" name="name"><br>
-					Cost:<br>
-					<input type="text" name="cost"><br>
-					<input type="submit" value="Submit">
-				</form>
-				<p>Sell equipment (for no money):<br></p>
-				<form action="deleteequipment.jsp" method="GET">
-					Insert Equipment Number: <br>
-					<input type="text" name="equipmentNo"><br>
-					<input type="submit" value="Sell">
-				</form>
-			</div>
-		</div>
-    </div>-->
+	</div>
 </body>
 </html>

@@ -4,8 +4,12 @@
 <head>
     <title>Most Common Procedures of 2016</title>
     <meta charse="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<header>
+		DB Dentistry
+	</header>
     <a href="index.html">Return to homepage.</a>
     <%
         request.setCharacterEncoding("UTF-8");

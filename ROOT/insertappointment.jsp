@@ -4,8 +4,12 @@
 <head>
     <title>Insert Appointment</title>
     <meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<header>
+		DB Dentistry
+	</header>
     <a href="index.html">Return to homepage.</a>
     <div id="result"> 
         <% 

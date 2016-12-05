@@ -21,14 +21,6 @@ p {
 input {
 	margin-top: 5px;
 }
-			
-a {
-	text-decoration: none;
-	border: 1px solid black;
-	margin-bottom: 10px;
-	padding-left: 2px;
-	padding-right: 2px;
-}
 
 body {
 	float: left;
@@ -37,4 +29,20 @@ body {
 
 h3 {
 	color:steelblue;
+}
+
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+th, td {
+	text-align: center;
+	tr:nth-child(even){background-color: steelblue};
+}
+
+#buttonPanel {
+	float:left;
+	width:48%;
+	border:1px solid steelblue;
 }
