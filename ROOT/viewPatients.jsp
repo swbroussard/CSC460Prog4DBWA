@@ -29,7 +29,7 @@
             content.append("<table>");
 
             Vector<String> vecResult =
-                dbcontroller.FindPatientInformation(firstName, lastName);
+                dbcontroller.FindAllPatients();
 
             if (vecResult == null) {
                 content.append("Query result is null!");

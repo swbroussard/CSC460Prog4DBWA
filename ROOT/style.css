@@ -38,3 +38,19 @@ body {
 h3 {
 	color:steelblue;
 }
+
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+th, td {
+	text-align: center;
+	tr:nth-child(even){background-color: steelblue};
+}
+
+#buttonPanel {
+	float:left;
+	width:48%;
+	border:1px solid steelblue;
+}

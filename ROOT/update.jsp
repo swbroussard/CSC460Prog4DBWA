@@ -4,8 +4,12 @@
 <head>
     <title>Update Patient</title>
     <meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<header>
+		DB Dentistry
+	</header>
     <div id="result">
         <%
             request.setCharacterEncoding("UTF-8");

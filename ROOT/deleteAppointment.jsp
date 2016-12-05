@@ -5,8 +5,12 @@
     <title>Delete</title>
     <meta charset="UTF-8"/>
     <script type="text/javascript" src="scripts/jspCaller.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<header>
+		DB Dentistry
+	</header>
   <div id="result">
   <a href="index.html">Return to home page.</a>
         <%
