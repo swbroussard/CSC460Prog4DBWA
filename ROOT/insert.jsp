@@ -191,5 +191,16 @@
         <input type="submit" value="Submit">
         </form>
     </div>
+    <div class="equipment">
+        <br/>
+        <h3>Insert a new piece of equipment</h3>
+        <form action="insertequipment.jsp" method="GET">
+            Equipment Name:
+            <input type="text" name="name"><br/><br/>
+            Cost (Whole Dollar):
+            <input type="text" name="cost"><br/><br/>
+            <input type="submit" value="Submit"><br/>
+        </form>
+    </div>
 </body>
 </html>

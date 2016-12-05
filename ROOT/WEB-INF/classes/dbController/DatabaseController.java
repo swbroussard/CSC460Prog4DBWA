@@ -1037,4 +1037,46 @@ public class DatabaseController {
             e.printStackTrace();
         }
     }
+
+    public String insertEquipment(String name, String cost) {
+        
+        String maxEquipmentQuery = "SELECT MAX(equipmentno) "
+            + "FROM cameronsmith.Equipment";
+
+        Integer maxEquipment = 0;
+        try {
+            ResultSet rs = statement_.executeQuery(maxEquipmentQuery);
+
+            rs.next();
+            maxEquipment = new Integer(rs.getString("MAX(equipmentno)"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        maxEquipment++;
+
+        String sqlUpdate = "INSERT INTO cameronsmith.Equipment "
+            + "VALUES (" + maxEquipment.toString() + ", '" + name + "', "
+            + cost + ")";
+
+        try {
+            statement_.executeUpdate(sqlUpdate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet rs = statement_.executeQuery("SELECT equipmentno, name, cost "
+                + "FROM cameronsmith.Equipment "
+                + "WHERE equipmentno=" + maxEquipment);
+
+            rs.next();
+            return rs.getString("equipmentno") + "##" + rs.getString("name")
+                + "##" + rs.getString("cost");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
