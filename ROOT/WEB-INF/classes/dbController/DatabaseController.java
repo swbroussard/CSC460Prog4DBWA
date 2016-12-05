@@ -655,7 +655,6 @@ public class DatabaseController {
       return "Deletion failed";
     }
 
-<<<<<<< HEAD
     /*---------------------------------------------------------------------
      |  Method updatePatientQuery
      |
@@ -707,7 +706,7 @@ public class DatabaseController {
 	    field = field + 1;
 	}
 	// returns an empty string for there is no input
-	if (nextVisit.equals("")) && (address.equals("") && oustandingCost < 0)  {
+	if (nextVisit.equals("") && address.equals("") && oustandingCost < 0)  {
 	    return "";
 	}
 
@@ -739,14 +738,14 @@ public class DatabaseController {
      |  Returns: String - the status of updated information about Patient Table
      *-------------------------------------------------------------------*/
 
-    public String updatePatient(Integer id, String nextVisit, Interger oustandingCost, String address) {
-	String status = null;
+    public String updatePatient(Integer id, String nextVisit, Integer oustandingCost, String address) {
+	String status = "";
 	String sqlStat = null;
 	
 	sqlStat = updatePatientQuery(id, nextVisit, oustandingCost, address);
 
 	if (sqlStat.equals("")) {
-	    return "No fields to update."
+	    return "No fields to update.";
 	}
 	else {
 	    try {
@@ -761,14 +760,13 @@ public class DatabaseController {
 		if (oustandingCost >= 0) {
 		    status = status + "oustandingCost";
 		}
-		return status
 	    }
 	    catch(SQLException s) {
 		System.out.println("Something is wrong with the update statement for Patient Table.");
 		s.printStackTrace();
 	    }
+	    return status;
 	}
-	
     }
     /*---------------------------------------------------------------------
      |  Author: Steven Broussard
@@ -812,7 +810,7 @@ public class DatabaseController {
 	    field = field + 1;
 	}
 	// returns an empty string for there is no input
-	if (givenname.equals("")) && (surname.equals(""))  {
+	if (givenname.equals("") && surname.equals(""))  {
 	    return "";
 	}
 
@@ -842,14 +840,14 @@ public class DatabaseController {
      |  Returns: String - Status of updated information about PatientName Table
      *-------------------------------------------------------------------*/
 
-    public String updatePatientName(Integer id, String givenname, String surnam) {
-	String status = null;
+    public String updatePatientName(Integer id, String givenname, String surname) {
+	String status = "";
 	String sqlStat = null;
 	
 	sqlStat = updatePatientNameQuery(id, givenname, surname);
 
 	if (sqlStat.equals("")) {
-	    return "No fields to update."
+	    return "No fields to update.";
 	}
 	else {
 	    try {
@@ -858,15 +856,15 @@ public class DatabaseController {
 		if (!(givenname.equals(""))) {
 		    status = status + "givenname ";
 		}
-		if (!(address.equals(""))) {
+		if (!(surname.equals(""))) {
 		    status = status + "surname";
 		}
-		return status;
 	    }
 	    catch(SQLException s) {
 		System.out.println("Something is wrong with the update statement for PatientName Table.");
 		s.printStackTrace();
 	    }
+	    return status;
 	}
     }
 
@@ -928,30 +926,27 @@ public class DatabaseController {
      *-------------------------------------------------------------------*/
 
     public String updatePatientInsurance(Integer id, String insuranceProv) {
-	String status = null;
+	String status = "";
 	String sqlStat = null;
 	
-	sqlStat = updatePatientNameQuery(id,insuranceProv);
+	sqlStat = updatePatientInsuranceQuery(id,insuranceProv);
 
 	if (sqlStat.equals("")) {
-	    return "No fields to update."
+	    return "No fields to update.";
 	}
 	else {
 	    try {
 		statement_.execute(sqlStat);
 		status="updated ";
-		if (!(givenname.equals(""))) {
+		if (!(insuranceProv.equals(""))) {
 		    status = status + "insuranceProv";
 		}
-		return status;
 	    }
 	    catch(SQLException s) {
 		System.out.println("Something is wrong with the update statement for PatientInsurance Table.");
 		s.printStackTrace();
 	    }
+	    return status;
 	}
     }
-
-=======
->>>>>>> e97df7c601a1e06e1b454565ddd7bb1735286e17
 }
