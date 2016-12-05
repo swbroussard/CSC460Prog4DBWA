@@ -21,14 +21,6 @@ p {
 input {
 	margin-top: 5px;
 }
-			
-a {
-	text-decoration: none;
-	border: 1px solid black;
-	margin-bottom: 10px;
-	padding-left: 2px;
-	padding-right: 2px;
-}
 
 body {
 	float: left;
