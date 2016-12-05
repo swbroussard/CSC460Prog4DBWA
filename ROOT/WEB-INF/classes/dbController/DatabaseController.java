@@ -992,4 +992,134 @@ public class DatabaseController {
 	    return status;
 	}
     }
+
+    public Vector<String> ListAllEquipment() {
+        
+        String sqlQuery = "SELECT equipmentno, name "
+            + "FROM cameronsmith.Equipment";
+
+        Vector<String> result = new Vector<String>();
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String tmp = rs.getString("equipmentno") + "##"
+                    + rs.getString("name");
+                result.add(tmp);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String insertLab(String name, String[] equipment) {
+        
+        String selectMax = "SELECT MAX(labno) "
+            + "FROM cameronsmith.Lab";
+
+        Integer maxLab = null;
+        try {
+            ResultSet rs = statement_.executeQuery(selectMax);
+
+            rs.next();
+            maxLab = new Integer(rs.getString("MAX(labno)"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        maxLab++;
+
+        String sqlQuery = "INSERT INTO cameronsmith.Lab "
+            + "VALUES (" + maxLab.toString() + ", '" + name + "')";
+
+        try {
+            statement_.executeUpdate(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < equipment.length; i++) {
+            try {
+            statement_.executeUpdate("INSERT INTO cameronsmith.LabEquipment "
+                + "VALUES (" + maxLab.toString()+ ", " + equipment[i] + ")");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String retrieveLab = "SELECT labno, name "
+            + "FROM cameronsmith.Lab "
+            + "WHERE labno=" + maxLab.toString();
+
+        String result = "";
+        try {
+            ResultSet rs = statement_.executeQuery(retrieveLab);
+            rs.next();
+
+            result =  rs.getString("labno") + "##" + rs.getString("name");
+
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void insertLabEquipment(String labno, String equipment) {
+        
+        String sqlUpdate = "INSERT INTO cameronsmith.LabEquipment "
+            + "VALUES (" + labno + ", " + equipment + ")";
+
+        try {
+            statement_.executeUpdate(sqlUpdate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String insertEquipment(String name, String cost) {
+        
+        String maxEquipmentQuery = "SELECT MAX(equipmentno) "
+            + "FROM cameronsmith.Equipment";
+
+        Integer maxEquipment = 0;
+        try {
+            ResultSet rs = statement_.executeQuery(maxEquipmentQuery);
+
+            rs.next();
+            maxEquipment = new Integer(rs.getString("MAX(equipmentno)"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        maxEquipment++;
+
+        String sqlUpdate = "INSERT INTO cameronsmith.Equipment "
+            + "VALUES (" + maxEquipment.toString() + ", '" + name + "', "
+            + cost + ")";
+
+        try {
+            statement_.executeUpdate(sqlUpdate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet rs = statement_.executeQuery("SELECT equipmentno, name, cost "
+                + "FROM cameronsmith.Equipment "
+                + "WHERE equipmentno=" + maxEquipment);
+
+            rs.next();
+            return rs.getString("equipmentno") + "##" + rs.getString("name")
+                + "##" + rs.getString("cost");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

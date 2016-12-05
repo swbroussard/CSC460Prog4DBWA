@@ -155,52 +155,5 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    <div class="lab">
-        <br/>
-        <h3>Insert a new lab</h3>
-        <form action="insertlab.jsp" method="GET">
-        Lab Name:
-        <input type="text" name="name"><br/><br/>
-        Equipment:</br>
-        <%
-            request.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html;charset=UTF-8");
-
-            dbcontroller = new DatabaseController();
-
-            dbcontroller.Open();
-
-            content = new StringBuffer();
-
-            result = dbcontroller.ListAllEquipment();
-
-            if (result == null) {
-                content.append("Query returned null!");
-            } else if (result != null && result.size() > 0) {
-                for (int i = 0; i < result.size(); i++) {
-                    // Detail[0] = EquipmentNo, Deatil[1] = EquipmentName
-                    String[] detail = result.get(i).split("##");
-                    content.append("<input type=\"checkbox\" name=\"id\" "
-                        + "value=\"" + detail[0] +  "\">" + detail[1] + "</input><br/>");
-                }
-            }
-
-            out.write(content.toString());
-            dbcontroller.Close();
-        %>
-        <input type="submit" value="Submit">
-        </form>
-    </div>
-    <div class="equipment">
-        <br/>
-        <h3>Insert a new piece of equipment</h3>
-        <form action="insertequipment.jsp" method="GET">
-            Equipment Name:
-            <input type="text" name="name"><br/><br/>
-            Cost (Whole Dollar):
-            <input type="text" name="cost"><br/><br/>
-            <input type="submit" value="Submit"><br/>
-        </form>
-    </div>
 </body>
 </html>
