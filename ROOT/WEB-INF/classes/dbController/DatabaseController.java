@@ -501,15 +501,15 @@ public class DatabaseController {
      |  Parameters:
      |      none
      |
-     |  Returns: Vector<String> - 
+     |  Returns: Vector<String> - results of the query
      *-------------------------------------------------------------------*/
 	public Vector<String> FindVisits() {
         String sql_query = null;
         
-        sql_query = "SELECT cameronsmith.Patient.PatientNo, cameronsmith.givenname, cameronsmith.surname, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty"
-					+ "FROM cameronsmith.PatientName, cameronsmith.Appointment"
-					+ "WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo"
-					+ "GROUP BY cameronsmith.Patient.PatientNo"
+        sql_query = "SELECT cameronsmith.PatientName.PatientNo, cameronsmith.givenname, cameronsmith.surname, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty "
+					+ "FROM cameronsmith.PatientName, cameronsmith.Appointment "
+					+ "WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo "
+					+ "GROUP BY cameronsmith.Patient.PatientNo "
 					+ "ORDER BY Loyalty DESC";
 
 		try {
@@ -519,8 +519,7 @@ public class DatabaseController {
 				String temp_record = rs.getString("patientNo") + "##" 
 					+ rs.getString("givenname")+ "##" 
 					+ rs.getString("surname")+ "##" 
-					+ rs.getString("address")+ "##" 
-					+ rs.getString("insuranceProv"); 
+					+ rs.getString("Loyalty"); 
 				result_lab.add(temp_record);
 			}
           return result_lab;
@@ -529,6 +528,31 @@ public class DatabaseController {
         }
         return null;
     }
+
+	public Vector<String> getMostOwed() {
+		String sql_query = null;
+        
+        sql_query = "SELECT givenname, surname, oustandingCost, address "
+			+ "FROM cameronsmith.Patient, cameronsmith.PatientName "
+			+ "WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo "
+			+ "ORDER BY outstandingCost DESC";
+
+		try {
+			ResultSet rs  = statement_.executeQuery(sql_query);
+			Vector<String> result_lab = new Vector<String>();
+			for (int i = 0; i < 10 && rs.next(); i++) {
+				String temp_record = rs.getString("givenname") + "##"
+					+ rs.getString("surname")+ "##" 
+					+ rs.getString("outstandingCost")+ "##" 
+					+ rs.getString("address");
+				result_lab.add(temp_record);
+			}
+          return result_lab;
+        } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+        }
+        return null;
+	}
 
     public String Delete(String id, String tablename, String columnname){
       boolean valueWorks = testValue(id);
