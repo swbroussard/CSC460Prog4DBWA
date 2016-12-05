@@ -14,29 +14,29 @@
             DatabaseController dbcontroller = new DatabaseController();
 
             dbcontroller.Open();
-	   --need to make hyper links to the different pages for the different updates about patient--
-	   --Then on each page, use input type tags and pass the informtion into the appropriate functions from the DatabaseController instance variable--
-	   --Also on each page, make sure to use NULL variable set up from the DatabaseController class fucntions--
+	   <%--need to make hyper links to the different pages for the different updates about patient--%>
+	   <%--Then on each page, use input type tags and pass the informtion into the appropriate functions from the DatabaseController instance variable--%>
+	   <%--Also on each page, make sure to use NULL variable set up from the DatabaseController class fucntions--%>
             out.write("<h2>Update Patient</h2>");
 
 	   StringBuffer webContent = new StringBuffer();
 	   
-	   --Beginning of a tables--
+	   <%--Beginning of a tables--%>
 	   webContent.append("<br/><table><tr>");
 	   
-	   --Link to update patient information; nextVisit outstanding balance, and address--
+	  <%--Link to update patient information; nextVisit outstanding balance, and address--%>
 	   webContent.append("<th><a href=./update_patient_information.jsp>Update Patient Information</a><\th>");
 
-	   --Link to update patient name; given name and surname or family name--
+	  <%--Link to update patient name; given name and surname or family name--%>
 	   webContent.append("<th><a href=./update_patient_name.jsp>Update Patient Name</a><\th>");
 	   
-	   --Link to update patient insurance provider--
+	   <%--Link to update patient insurance provider--%>
 	   webContent.append("<th><a href=./update_patient_insurance.jsp>Update Patient Insurance Provider</a><\th>");
 
-	   --Ending the table tag--
+	   <%--Ending the table tag--%>
 	   webContent.append("<\table>");
 
-            --StringBuffer content = new StringBuffer();
+            <!--<%--StringBuffer content = new StringBuffer();
             content.append("<br/><table>");
 
             Vector<String> vecResult = dbcontroller.FindAllPatients();
@@ -64,7 +64,7 @@
                     content.append("</tr>");
                 }
             }
-            out.write(content.toString());--
+            out.write(content.toString());-->
 
             out.write(webContent.toString());
 
