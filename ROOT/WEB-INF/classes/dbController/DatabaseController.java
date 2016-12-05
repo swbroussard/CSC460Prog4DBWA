@@ -1079,4 +1079,62 @@ public class DatabaseController {
 
         return null;
     }
+
+    public String insertProcedure(String name, Integer cost, Float length,
+            String[] equipment) {
+        
+        String maxProcQuery = "SELECT MAX(procedureno) "
+            + "FROM cameronsmith.Procedure";
+
+        Integer maxProc = null;
+        try {
+            ResultSet rs = statement_.executeQuery(maxProcQuery);
+
+            rs.next();
+            maxProc = new Integer(rs.getString("MAX(procedureno)"));
+            maxProc++;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (maxProc == null) return null;
+
+        String insertProc = "INSERT INTO cameronsmith.Procedure "
+            + "VALUES (" + maxProc.toString() + ", '" + name + "', "
+            + cost.toString() + ")";
+
+        String insertProcLength = "INSERT INTO cameronsmith.ProcedureLength "
+            + "VALUES (" + maxProc.toString() + ", " + length.toString() + ")";
+
+        try {
+            statement_.executeUpdate(insertProc);
+            statement_.executeUpdate(insertProcLength);
+
+            for (int i = 0; i < equipment.length; i++) {
+                statement_.executeUpdate(
+                    "INSERT INTO cameronsmith.ProcedureEquipment "
+                    + "VALUES (" + maxProc.toString() + ", " + equipment[i] + ")");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlQuery = "SELECT p.procedureno, name, cost, length "
+            + "FROM cameronsmith.Procedure p, cameronsmith.ProcedureLength pl "
+            + "WHERE p.procedureno=" + maxProc.toString();
+
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            rs.next();
+            return rs.getString("procedureno") + "##" + rs.getString("name")
+                + "##" + rs.getString("cost") + "##" + rs.getString("length");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
 }
