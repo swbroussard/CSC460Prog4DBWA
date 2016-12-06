@@ -199,7 +199,9 @@
          <br>
          <h2> Procedure-Equipment Table </h2>
          <div>
-         <form action="deleteActions/deleteequipment.jsp" method="GET">
+         <form action="deleteActions/deleteequipmentprocedure.jsp" method="GET">
+          Procedure(Delete using ProcedureNo): <br>
+                <input type="text" name="procedureId"><br>
                 Equipment(Delete using EquipmentNo): <br>
                 <input type="text" name="equipmentId"><br>
                 <input type="submit" value="Submit">
