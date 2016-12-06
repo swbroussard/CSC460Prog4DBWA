@@ -2,7 +2,7 @@
 <%@page import="java.util.*,java.lang.StringBuffer,
     dbController.DatabaseController" %>
 <head>
-    <title>Find Outstanding Costs</title>
+    <title>Find Patient Information</title>
     <meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
