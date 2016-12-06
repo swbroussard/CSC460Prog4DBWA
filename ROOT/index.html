@@ -17,7 +17,20 @@
 					<input type="submit" value="Insert"><br>
 				</form>
 				<form action='delete.jsp'>
-					<p>Delete from tables</p>
+					<p>Delete from:</p>
+					Patient tables<br>
+					<input type="submit" value="Delete"><br>
+				</form>
+				<form action='deleteAppointment.jsp'>
+					Appointments<br>
+					<input type="submit" value="Delete"><br>
+				</form>
+				<form action='deleteequipmentandlab.jsp'>
+					Equipment and Labs<br>
+					<input type="submit" value="Delete"><br>
+				</form>
+				<form action='deleteProcedure.jsp'>
+					Procedures<br>
 					<input type="submit" value="Delete"><br>
 				</form>
 				<form action='update.jsp'>
@@ -31,27 +44,36 @@
 				</form>
 				<form action='findpatientinformation.jsp' method='GET'>
 					<p>Find patient(s) with input name</p>
-					First:
+					First:<br>
 					<input type="text" name="firstname"><br>
-					Last:
+					Last:<br>
 					<input type="text" name="lastname"><br>
 					<input type="submit" value="Find">
 				</form>
-			</div>
-		</div>
-		<div id="rightSide" class="buttonPanel">
-			<form action="viewPatients.jsp">
-				<p>View patients</p>
-				<input type="submit" value="View">
-			</form>
-			<form action="viewAppointments.jsp">
-				<p>View appointments</p>
-				<input type="submit" value="View">
-			</form>
-			<form action="viewProcedures.jsp">
-				<p>View procedures</p>
-				<input type="submit" value="View">
-			</form>
+				<form action='findVisitsDescOrder.jsp'>
+					<p>Get patient loyalty (number of visits)</p>
+					<input type="submit" value="Get loyalty">
+				</form>
+				<form action='findMostDebt.jsp'>
+					<p>Send debt collectors</p>
+					<input type="submit" value="Get highest debts">
+				</form>
+                <form action="commonProc.jsp">
+                    <p>View most common procedures of 2016</p>
+                    <input type="submit" value="View">
+                </form>
+				<form action="viewPatients.jsp">
+					<p>View patients</p>
+					<input type="submit" value="View">
+				</form>
+				<form action="viewAppointments.jsp">
+					<p>View appointments</p>
+					<input type="submit" value="View">
+				</form>
+				<form action="viewProcedures.jsp">
+					<p>View procedures</p>
+					<input type="submit" value="View">
+				</form>
 		</div>
 	</div>
 </body>

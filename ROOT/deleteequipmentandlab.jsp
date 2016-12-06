@@ -35,14 +35,11 @@
                 for (int i=0; i<vecResult.size(); i++) {
                     String row = vecResult.get(i);
                     String[] detail = row.split("##");
-                    if (detail.length != 3) {
-                    }
                 
                     content.append("<tr id=\"tablerow_>" + i + "\">");
-                    content.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
-                        + "\"><b>" + detail[0] + "</b></a></td>");
-                    content.append("<td><a href=\"javascript:void(0)\" >"
-                        + "<b>" + detail[1] + "</b></a></td>");
+                    content.append("<td class=\"postlist\"><b>" + detail[0] + "</b></td>");
+                    content.append("<td>"
+                        + "<b>" + detail[1] + "</b></td>");
                     content.append("<td>" + detail[2] + "</td>"
                         + "<td>");
                     content.append("</tr>");
@@ -73,8 +70,6 @@
 
             dbcontrollerle.Open();
 
-           
-
             StringBuffer contentle = new StringBuffer();
             contentle.append("<br/><table>");
 
@@ -89,14 +84,11 @@
                 for (int i=0; i<vecResultle.size(); i++) {
                     String row = vecResultle.get(i);
                     String[] detail = row.split("##");
-                    if (detail.length != 3) {
-                    }
                 
                     contentle.append("<tr id=\"tablerow_>" + i + "\">");
-                    contentle.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
-                        + "\"><b>" + detail[0] + "</b></a></td>");
-                    contentle.append("<td><a href=\"javascript:void(0)\" >"
-                        + "<b>" + detail[1] + "</b></a></td>");
+                    contentle.append("<td class=\"postlist\"><b>" + detail[0] + "</b></td>");
+                    contentle.append("<td>"
+                        + "<b>" + detail[1] + "</b></td>");
                     contentle.append("</tr>");
                 }
             }
@@ -128,8 +120,6 @@
 
             dbcontrollerla.Open();
 
-            
-
             StringBuffer contentla = new StringBuffer();
             contentla.append("<br/><table>");
 
@@ -144,14 +134,10 @@
                 for (int i=0; i<vecResultla.size(); i++) {
                     String row = vecResultla.get(i);
                     String[] detail = row.split("##");
-                    if (detail.length != 3) {
-                    }
                 
                     contentla.append("<tr id=\"tablerow_>" + i + "\">");
-                    contentla.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
-                        + "\"><b>" + detail[0] + "</b></a></td>");
-                    contentla.append("<td><a href=\"javascript:void(0)\" >"
-                        + "<b>" + detail[1] + "</b></a></td>");
+                    contentla.append("<td class=\"postlist\"><b>" + detail[0] + "</b></td>");
+                    contentla.append("<td>"+ "<b>" + detail[1] + "</b></td>");
                     contentla.append("</tr>");
                 }
             }
@@ -180,8 +166,6 @@
 
             dbcontrollerpe.Open();
 
-            
-
             StringBuffer contentpe = new StringBuffer();
             contentpe.append("<br/><table>");
 
@@ -200,10 +184,9 @@
                     }
                 
                     contentpe.append("<tr id=\"tablerow_>" + i + "\">");
-                    contentpe.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
-                        + "\"><b>" + detail[0] + "</b></a></td>");
-                    contentpe.append("<td><a href=\"javascript:void(0)\" >"
-                        + "<b>" + detail[1] + "</b></a></td>");
+                    contentpe.append("<td class=\"postlist\"><b>" + detail[0] + "</b></td>");
+                    contentpe.append("<td>"
+                        + "<b>" + detail[1] + "</b></td>");
                     contentpe.append("</tr>");
                 }
             }
@@ -216,7 +199,9 @@
          <br>
          <h2> Procedure-Equipment Table </h2>
          <div>
-         <form action="deleteActions/deleteequipment.jsp" method="GET">
+         <form action="deleteActions/deleteequipmentprocedure.jsp" method="GET">
+          Procedure(Delete using ProcedureNo): <br>
+                <input type="text" name="procedureId"><br>
                 Equipment(Delete using EquipmentNo): <br>
                 <input type="text" name="equipmentId"><br>
                 <input type="submit" value="Submit">

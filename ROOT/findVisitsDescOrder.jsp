@@ -2,7 +2,7 @@
 <%@page import="java.util.*,java.lang.StringBuffer,
     dbController.DatabaseController" %>
 <head>
-    <title>Find Patients</title>
+    <title>Find Patients in Descending Order</title>
     <meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -22,18 +22,17 @@
 
             StringBuffer content = new StringBuffer();
             content.append("<br/>");
-
+            
             content.append("<table>");
 
             Vector<String> vecResult =
-                dbcontroller.FindAllPatients();
+                dbcontroller.FindVisits();
 
             if (vecResult == null) {
                 content.append("Query result is null!");
             }
 
-            content.append("<tr><th>PatientNo</th><th>Next Visit</th>"
-                + "<th>Outstanding Cost</th><th>Address</th></tr>");
+            content.append("<tr><th>PatientNo</th><th>Loyalty</th><tr>");
 
             if (vecResult != null && vecResult.size() > 0) {
                 for (int i = 0; i < vecResult.size(); i++) {
@@ -42,8 +41,7 @@
 
                     content.append("<tr><td>" + detail[0] + "</td>" 
                         + "<td>" + detail[1] + "</td>"
-                        + "<td>" + detail[2] + "</td>"
-                        + "<td>" + detail[3] + "</td></tr>");
+                        + "</tr>");
                 }
             }
 

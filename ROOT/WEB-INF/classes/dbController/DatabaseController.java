@@ -91,7 +91,22 @@ public class DatabaseController {
 	}
     }
 
-
+/*---------------------------------------------------------------------
+    |  Author: 
+  |
+  |  Method getMostOwed()
+    |
+    |  Purpose: Find the 10 highest owing patients in the patients database
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllPatients() {
     String sql_query = "SELECT * FROM cameronsmith.Patient";
    try {
@@ -110,6 +125,22 @@ public class DatabaseController {
     return null;
   }
 
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllPatientNames()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllPatientNames() {
     String sql_query = "SELECT * FROM cameronsmith.PatientName";
    try {
@@ -127,6 +158,22 @@ public class DatabaseController {
     return null;
   }
 
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllPatientInsurance()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllPatientInsurance() {
     String sql_query = "SELECT * FROM cameronsmith.PatientInsurance";
    try {
@@ -144,6 +191,22 @@ public class DatabaseController {
     return null;
   }
 
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllAppointments()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllAppointments() {
     String sql_query = "SELECT * FROM cameronsmith.Appointment";
    try {
@@ -162,6 +225,22 @@ public class DatabaseController {
     return null;
   }
 
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllProcedures()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllProcedures() {
     String sql_query = "SELECT * FROM cameronsmith.Procedure";
    try {
@@ -180,6 +259,23 @@ public class DatabaseController {
     return null;
   }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllProcedures()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
     public Vector<String> FindAllProcedureLengths() {
     String sql_query = "SELECT * FROM cameronsmith.ProcedureLength";
    try {
@@ -197,6 +293,23 @@ public class DatabaseController {
     return null;
   }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllProcedures()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
    public Vector<String> FindAllAppointmentProcedures() {
     String sql_query = "SELECT * FROM cameronsmith.AppointmentProcedure";
    try {
@@ -214,6 +327,23 @@ public class DatabaseController {
     return null;
   }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllProcedures()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllEquipment() {
     String sql_query = "SELECT * FROM cameronsmith.Equipment";
    try {
@@ -232,6 +362,23 @@ public class DatabaseController {
     return null;
   }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllProcedures()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
    public Vector<String> FindAllProcedureEquipment() {
     String sql_query = "SELECT * FROM cameronsmith.ProcedureEquipment";
    try {
@@ -249,6 +396,23 @@ public class DatabaseController {
     return null;
   }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllLabEquipment()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
    public Vector<String> FindAllLabEquipment() {
     String sql_query = "SELECT * FROM cameronsmith.LabEquipment";
    try {
@@ -266,6 +430,23 @@ public class DatabaseController {
     return null;
   }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindAllLab()
+    |
+    |  Purpose: Select all the information for this table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
   public Vector<String> FindAllLab() {
     String sql_query = "SELECT * FROM cameronsmith.Lab";
    try {
@@ -428,6 +609,7 @@ public class DatabaseController {
         return null;
     }
 
+
     public Vector<String> FindOutstandingCosts(String amount) {
         
         String sqlQuery = "SELECT p.patientno, givenname, surname, outstandingcost "
@@ -456,6 +638,27 @@ public class DatabaseController {
         return null;
     }
 
+
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method FindPatientInformation()
+    |
+    |  Purpose: Users input either a first name, last name or both. These names
+    |           are then used to find all users that this string input could possibly be.
+    |           It returns all results that fit the requirements.
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      String firstName, -First name of client
+    |      String lastName   -Last name of client
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
     public Vector<String> FindPatientInformation(String firstName, String lastName) {
         boolean firstNameNull = firstName.length() == 0;
         boolean lastNameNull = lastName.length() == 0;
@@ -486,7 +689,121 @@ public class DatabaseController {
         }
         return null;
     }
+	
+	/*---------------------------------------------------------------------
+    |  Author: Steven Adler
+	|
+	|  Method findVisits
+    |
+    |  Purpose: finds the number of visits of all patients in descending order
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
+	public Vector<String> FindVisits() {
+        String sql_query = null;
+        
 
+        sql_query = "SELECT cameronsmith.PatientName.PatientNo, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty FROM cameronsmith.PatientName, cameronsmith.Appointment WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo GROUP BY cameronsmith.PatientName.PatientNo ORDER BY Loyalty DESC";
+
+     //    sql_query = "SELECT cameronsmith.PatientName.*, COUNT(cameronsmith.Appointment.PATIENTNO) AS Loyalty "
+					// + "FROM cameronsmith.PatientName "
+					// + "LEFT JOIN cameronsmith.Appointment "
+					// + "ON cameronsmith.PatientName.PATIENTNO = cameronsmith.Appointment.PATIENTNO "
+					// + "GROUP BY cameronsmith.Patient.PATIENTNO "
+					// + "ORDER BY Loyalty DESC";
+
+
+		try {
+			ResultSet rs  = statement_.executeQuery(sql_query);
+			Vector<String> result_lab = new Vector<String>();
+			while (rs.next()) {
+				String temp_record = rs.getString("patientNo") + "##" 
+					+ rs.getString("Loyalty"); 
+				result_lab.add(temp_record);
+			}
+          return result_lab;
+        } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+        }
+        return null;
+    }
+
+
+	/*---------------------------------------------------------------------
+    |  Author: Steven Adler
+	|
+	|  Method getMostOwed()
+    |
+    |  Purpose: Find the 10 highest owing patients in the patients database
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
+public Vector<String> GetMostOwed() {
+    String sql_query = null;
+        
+        sql_query = "SELECT givenname, surname, outstandingCost, address "
+      + "FROM cameronsmith.Patient, cameronsmith.PatientName "
+      + "WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo "
+      + "  AND outstandingCost IS NOT NULL "
+      + "ORDER BY outstandingCost DESC";
+
+        // sql_query = "SELECT givenname, surname, oustandingCost, address FROM cameronsmith.Patient, cameronsmith.PatientName WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo ORDER BY outstandingCost DESC";
+
+
+		try {
+			ResultSet rs  = statement_.executeQuery(sql_query);
+			Vector<String> result_lab = new Vector<String>();
+			for (int i = 0; i < 10 && rs.next(); i++) {
+				String temp_record = rs.getString("givenname") + "##"
+					+ rs.getString("surname")+ "##" 
+					+ rs.getString("outstandingCost")+ "##" 
+					+ rs.getString("address");
+				result_lab.add(temp_record);
+			}
+          return result_lab;
+        } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+        }
+        return null;
+	}
+
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method Delete()
+    |
+    |  Purpose: This is a generic delete that will remove a record
+    |           based on the id in its table, the tablename and the 
+    |           columnname. It has a switch/case statement to perform
+    |           cascading deletes if necessary. These deletes will happen
+    |           in the necessary order to avoid stale records.
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: The record in the database no longer exists
+    |
+    |  Parameters:
+    |      String id, 
+    |      String tablename, 
+    |      String columnname
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
     public String Delete(String id, String tablename, String columnname){
       boolean valueWorks = testValue(id);
       if(!valueWorks){
@@ -608,6 +925,33 @@ public class DatabaseController {
       return "Deletion failed";
     }
 
+
+/*---------------------------------------------------------------------
+    |  Author: Patrick Maley
+    |
+    |  Method DeleteMulti()
+    |
+    |  Purpose: This is a generic delete that will remove a record
+    |           based on the id in its table, the tablename and the 
+    |           columnname. It has a switch/case statement to perform
+    |           cascading deletes if necessary. These deletes will happen
+    |           in the necessary order to avoid stale records. This delete
+    |           is deleting from tables where the primary key is composed of
+    |           two columns.
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: Record is deleted.
+    |
+    |  Parameters:
+    |      String idOne, -Id of the column 1
+    |      String idTwo, -Id of the column 1
+    |      String tablename, -Name of the table
+    |      String columnNameOne, -Name of the column 1
+    |      String columnNameTwo -Name of the column 2
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
     public String DeleteMulti(String idOne, String idTwo, String tablename, String columnNameOne, String columnNameTwo){
        boolean valueWorks = testValue(idOne);
        boolean valueWorksTwo = testValue(idTwo);
@@ -751,10 +1095,10 @@ public class DatabaseController {
 	    try {
 		statement_.execute(sqlStat);
 		status="updated ";
-		if (!(nextVisit.equals(""))) {
+		if (nextVisit.length() > 0) {
 		    status = status + "nextVisit ";
 		}
-		if (!(address.equals(""))) {
+		if (address.length() > 0) {
 		    status = status + "address ";
 		}
 		if (oustandingCost >= 0) {
@@ -1037,4 +1381,104 @@ public class DatabaseController {
             e.printStackTrace();
         }
     }
+
+    public String insertEquipment(String name, String cost) {
+        
+        String maxEquipmentQuery = "SELECT MAX(equipmentno) "
+            + "FROM cameronsmith.Equipment";
+
+        Integer maxEquipment = 0;
+        try {
+            ResultSet rs = statement_.executeQuery(maxEquipmentQuery);
+
+            rs.next();
+            maxEquipment = new Integer(rs.getString("MAX(equipmentno)"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        maxEquipment++;
+
+        String sqlUpdate = "INSERT INTO cameronsmith.Equipment "
+            + "VALUES (" + maxEquipment.toString() + ", '" + name + "', "
+            + cost + ")";
+
+        try {
+            statement_.executeUpdate(sqlUpdate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet rs = statement_.executeQuery("SELECT equipmentno, name, cost "
+                + "FROM cameronsmith.Equipment "
+                + "WHERE equipmentno=" + maxEquipment);
+
+            rs.next();
+            return rs.getString("equipmentno") + "##" + rs.getString("name")
+                + "##" + rs.getString("cost");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String insertProcedure(String name, Integer cost, Float length,
+            String[] equipment) {
+        
+        String maxProcQuery = "SELECT MAX(procedureno) "
+            + "FROM cameronsmith.Procedure";
+
+        Integer maxProc = null;
+        try {
+            ResultSet rs = statement_.executeQuery(maxProcQuery);
+
+            rs.next();
+            maxProc = new Integer(rs.getString("MAX(procedureno)"));
+            maxProc++;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (maxProc == null) return null;
+
+        String insertProc = "INSERT INTO cameronsmith.Procedure "
+            + "VALUES (" + maxProc.toString() + ", '" + name + "', "
+            + cost.toString() + ")";
+
+        String insertProcLength = "INSERT INTO cameronsmith.ProcedureLength "
+            + "VALUES (" + maxProc.toString() + ", " + length.toString() + ")";
+
+        try {
+            statement_.executeUpdate(insertProc);
+            statement_.executeUpdate(insertProcLength);
+
+            for (int i = 0; i < equipment.length; i++) {
+                statement_.executeUpdate(
+                    "INSERT INTO cameronsmith.ProcedureEquipment "
+                    + "VALUES (" + maxProc.toString() + ", " + equipment[i] + ")");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlQuery = "SELECT p.procedureno, name, cost, length "
+            + "FROM cameronsmith.Procedure p, cameronsmith.ProcedureLength pl "
+            + "WHERE p.procedureno=" + maxProc.toString();
+
+        try {
+            ResultSet rs = statement_.executeQuery(sqlQuery);
+
+            rs.next();
+            return rs.getString("procedureno") + "##" + rs.getString("name")
+                + "##" + rs.getString("cost") + "##" + rs.getString("length");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
 }

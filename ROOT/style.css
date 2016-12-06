@@ -38,7 +38,16 @@ table, th, td {
 
 th, td {
 	text-align: center;
-	tr:nth-child(even){background-color: steelblue};
+}
+
+th {
+	background-color: steelblue;
+	color: white;
+}
+
+td:nth-child(even) {
+	background-color: steelblue;
+	color: white;
 }
 
 #buttonPanel {
