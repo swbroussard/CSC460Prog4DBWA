@@ -25,8 +25,7 @@
             
             content.append("<table>");
 
-            Vector<String> vecResult =
-                dbcontroller.FindVisits();
+            Vector<String> vecResult = dbcontroller.GetMostOwed();
 
             if (vecResult == null) {
                 content.append("Query result is null!");

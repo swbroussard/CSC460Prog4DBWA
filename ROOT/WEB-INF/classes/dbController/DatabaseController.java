@@ -506,19 +506,13 @@ public class DatabaseController {
 	public Vector<String> FindVisits() {
         String sql_query = null;
         
-        sql_query = "SELECT cameronsmith.PatientName.PatientNo, cameronsmith.givenname, cameronsmith.surname, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty "
-					+ "FROM cameronsmith.PatientName, cameronsmith.Appointment "
-					+ "WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo "
-					+ "GROUP BY cameronsmith.Patient.PatientNo "
-					+ "ORDER BY Loyalty DESC";
+        sql_query = "SELECT cameronsmith.PatientName.PatientNo, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty FROM cameronsmith.PatientName, cameronsmith.Appointment WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo GROUP BY cameronsmith.PatientName.PatientNo ORDER BY Loyalty DESC";
 
 		try {
 			ResultSet rs  = statement_.executeQuery(sql_query);
 			Vector<String> result_lab = new Vector<String>();
 			while (rs.next()) {
 				String temp_record = rs.getString("patientNo") + "##" 
-					+ rs.getString("givenname")+ "##" 
-					+ rs.getString("surname")+ "##" 
 					+ rs.getString("Loyalty"); 
 				result_lab.add(temp_record);
 			}
@@ -529,10 +523,10 @@ public class DatabaseController {
         return null;
     }
 
-	public Vector<String> getMostOwed() {
+	public Vector<String> GetMostOwed() {
 		String sql_query = null;
         
-        sql_query = "SELECT givenname, surname, oustandingCost, address "
+        sql_query = "SELECT givenname, surname, outstandingCost, address "
 			+ "FROM cameronsmith.Patient, cameronsmith.PatientName "
 			+ "WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo "
 			+ "ORDER BY outstandingCost DESC";

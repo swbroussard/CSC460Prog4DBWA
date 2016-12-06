@@ -32,8 +32,7 @@
                 content.append("Query result is null!");
             }
 
-            content.append("<tr><th>PatientNo</th><th>First Name</th>"
-                + "<th>Last Name</th><th>Loyalty</th><tr>");
+            content.append("<tr><th>PatientNo</th><th>Loyalty</th><tr>");
 
             if (vecResult != null && vecResult.size() > 0) {
                 for (int i = 0; i < vecResult.size(); i++) {
@@ -42,9 +41,7 @@
 
                     content.append("<tr><td>" + detail[0] + "</td>" 
                         + "<td>" + detail[1] + "</td>"
-                        + "<td>" + detail[2] + "</td>"
-                        + "<td>" + detail[3] + "</td>"
-                        + "<td>" + detail[4] + "</td></tr>");
+                        + "</tr>");
                 }
             }
 

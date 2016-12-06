@@ -35,14 +35,11 @@
                 for (int i=0; i<vecResult.size(); i++) {
                     String row = vecResult.get(i);
                     String[] detail = row.split("##");
-                    if (detail.length != 4) {
-                    }
                 
                     content.append("<tr id=\"tablerow_>" + i + "\">");
-                    content.append("<td class=\"postlist\"><a href=\"javascript:void(0)\" "
-                        + "\"><b>" + detail[0] + "</b></a></td>");
-                    content.append("<td><a href=\"javascript:void(0)\" >"
-                        + "<b>" + detail[1] + "</b></a></td>");
+                    content.append("<td class=\"postlist\"><b>" + detail[0] + "</b></td>");
+                    content.append("<td>"
+                        + "<b>" + detail[1] + "</b></td>");
                     content.append("<td>" + detail[2].split(" ")[0] + "</td>"
                         + "<td>");
                     content.append("</tr>");
