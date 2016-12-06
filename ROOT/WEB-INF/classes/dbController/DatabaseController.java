@@ -488,28 +488,29 @@ public class DatabaseController {
     }
 	
 	/*---------------------------------------------------------------------
-     |  Author: Steven Adler
-	 |
-	 |  Method findVisits
-     |
-     |  Purpose: finds the number of visits of all patients in descending order
-     |
-     |  Pre-condition: none
-     |
-     |  Post-condition: none
-     |
-     |  Parameters:
-     |      none
-     |
-     |  Returns: Vector<String> - results of the query
-     *-------------------------------------------------------------------*/
+    |  Author: Steven Adler
+	|
+	|  Method findVisits
+    |
+    |  Purpose: finds the number of visits of all patients in descending order
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
 	public Vector<String> FindVisits() {
         String sql_query = null;
         
-        sql_query = "SELECT cameronsmith.PatientName.PatientNo, cameronsmith.givenname, cameronsmith.surname, COUNT(cameronsmith.Appointment.patientNo) AS Loyalty "
-					+ "FROM cameronsmith.PatientName, cameronsmith.Appointment "
-					+ "WHERE cameronsmith.PatientName.patientNo = cameronsmith.Appointment.patientNo "
-					+ "GROUP BY cameronsmith.Patient.PatientNo "
+        sql_query = "SELECT cameronsmith.PatientName.*, COUNT(cameronsmith.Appointment.PATIENTNO) AS Loyalty "
+					+ "FROM cameronsmith.PatientName "
+					+ "LEFT JOIN cameronsmith.Appointment "
+					+ "ON cameronsmith.PatientName.PATIENTNO = cameronsmith.Appointment.PATIENTNO "
+					+ "GROUP BY cameronsmith.Patient.PATIENTNO "
 					+ "ORDER BY Loyalty DESC";
 
 		try {
@@ -529,13 +530,26 @@ public class DatabaseController {
         return null;
     }
 
+	/*---------------------------------------------------------------------
+    |  Author: Steven Adler
+	|
+	|  Method getMostOwed()
+    |
+    |  Purpose: Find the 10 highest owing patients in the patients database
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters:
+    |      none
+    |
+    |  Returns: Vector<String> - results of the query
+    *-------------------------------------------------------------------*/
 	public Vector<String> getMostOwed() {
 		String sql_query = null;
         
-        sql_query = "SELECT givenname, surname, oustandingCost, address "
-			+ "FROM cameronsmith.Patient, cameronsmith.PatientName "
-			+ "WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo "
-			+ "ORDER BY outstandingCost DESC";
+        sql_query = "SELECT givenname, surname, oustandingCost, address FROM cameronsmith.Patient, cameronsmith.PatientName WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo ORDER BY outstandingCost DESC";
 
 		try {
 			ResultSet rs  = statement_.executeQuery(sql_query);
