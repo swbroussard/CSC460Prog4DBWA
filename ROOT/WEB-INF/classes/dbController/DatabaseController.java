@@ -758,6 +758,7 @@ public Vector<String> GetMostOwed() {
         sql_query = "SELECT givenname, surname, outstandingCost, address "
       + "FROM cameronsmith.Patient, cameronsmith.PatientName "
       + "WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo "
+      + "  AND outstandingCost IS NOT NULL "
       + "ORDER BY outstandingCost DESC";
 
         // sql_query = "SELECT givenname, surname, oustandingCost, address FROM cameronsmith.Patient, cameronsmith.PatientName WHERE cameronsmith.Patient.patientNo = cameronsmith.PatientName.patientNo ORDER BY outstandingCost DESC";
