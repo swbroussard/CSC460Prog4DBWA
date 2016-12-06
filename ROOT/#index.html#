@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <title>CS 460 - Project 4</title>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="scripts/jspCaller.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		DB Dentistry
+	</header>
+    <div class="frame">
+		<div id="leftSide" class="buttonPanel">
+			<div id="navButtons">
+				<form action='insert.jsp'>
+					<p>Insert patient, appointment, etc.</p>
+					<input type="submit" value="Insert"><br>
+				</form>
+				<form action='delete.jsp'>
+					<p>Delete from tables</p>
+					<input type="submit" value="Delete"><br>
+				</form>
+				<form action='update.jsp'>
+					<p>Update patient records</p>
+					<input type="submit" value="Update"><br>
+				</form>
+				<form action='findoutstandingcosts.jsp' method='GET'>
+					<p>Find patients with outstanding costs greater than input value</p>
+					<input type="text" name="outstandingcosts"><br>
+					<input type="submit" value="Calculate"><br>
+				</form>
+				<form action='findpatientinformation.jsp' method='GET'>
+					<p>Find patient(s) with input name</p>
+					First:
+					<input type="text" name="firstname"><br>
+					Last:
+					<input type="text" name="lastname"><br>
+					<input type="submit" value="Find">
+				</form>
+			</div>
+		</div>
+		<div id="rightSide" class="buttonPanel">
+			<form action="viewPatients.jsp">
+				<p>View patients</p>
+				<input type="submit" value="View">
+			</form>
+			<form action="viewAppointments.jsp">
+				<p>View appointments</p>
+				<input type="submit" value="View">
+			</form>
+			<form action="viewProcedures.jsp">
+				<p>View procedures</p>
+				<input type="submit" value="View">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -683,25 +683,25 @@ public class DatabaseController {
 
 	sqlStat = "UPDATE cameronsmith.Patient ";
 
-	if (!(nextVisit.equals(""))) {
+	if (nextVisit.length() > 0) {
 	    sqlStat = sqlStat + "SET nextVisit=" + nextVisit;
 	    field = field + 1;
 	}
-	if (!(address.equals(""))) {
+	if (address.length() > 0) {
 	    if (field > 0) {
-		sqlStat = ",address=" + address;
+		sqlStat = sqlStat + ",address=" + address;
 	    }
 	    else {
-		sqlStat = "SET address=" + address;
+		sqlStat = sqlStat + "SET address=" + address;
 	    }
 	    field = field + 1;
 	}
 	if (oustandingCost >= 0) {
 	    if (field > 0) {
-		sqlStat = ",oustandingCost=" + oustandingCost;
+		sqlStat = sqlStat + ",oustandingCost=" + oustandingCost;
 	    }
 	    else {
-		sqlStat = " SET oustandingCost=" + oustandingCost;
+		sqlStat = sqlStat + " SET oustandingCost=" + oustandingCost;
 	    }
 	    field = field + 1;
 	}
@@ -744,7 +744,7 @@ public class DatabaseController {
 	
 	sqlStat = updatePatientQuery(id, nextVisit, oustandingCost, address);
 
-	if (sqlStat.equals("")) {
+	if (sqlStat.length() == 0) {
 	    return "No fields to update.";
 	}
 	else {
@@ -762,7 +762,7 @@ public class DatabaseController {
 		}
 	    }
 	    catch(SQLException s) {
-		System.out.println("Something is wrong with the update statement for Patient Table.");
+		status = "Something is wrong with the update statement for Patient.";
 		s.printStackTrace();
 	    }
 	    return status;
@@ -796,16 +796,16 @@ public class DatabaseController {
 
 	sqlStat = "UPDATE cameronsmith.PatientName ";
 
-	if (!(givenname.equals(""))) {
+	if (givenname.length() > 0) {
 	    sqlStat = sqlStat + "SET givenname=" + givenname;
 	    field = field + 1;
 	}
-	if (!(surname.equals(""))) {
+	if (surname.length() > 0) {
 	    if (field > 0) {
-		sqlStat = ",surname=" + surname;
+		sqlStat = sqlStat + ",surname=" + surname;
 	    }
 	    else {
-		sqlStat = "SET surname=" + surname;
+		sqlStat = sqlStat + "SET surname=" + surname;
 	    }
 	    field = field + 1;
 	}
@@ -846,22 +846,22 @@ public class DatabaseController {
 	
 	sqlStat = updatePatientNameQuery(id, givenname, surname);
 
-	if (sqlStat.equals("")) {
+	if (sqlStat.length() == 0) {
 	    return "No fields to update.";
 	}
 	else {
 	    try {
 		statement_.execute(sqlStat);
 		status="updated ";
-		if (!(givenname.equals(""))) {
+		if (givenname.length() > 0) {
 		    status = status + "givenname ";
 		}
-		if (!(surname.equals(""))) {
+		if (surname.length() > 0) {
 		    status = status + "surname";
 		}
 	    }
 	    catch(SQLException s) {
-		System.out.println("Something is wrong with the update statement for PatientName Table.");
+		status = "Something is wrong with the update statement for PatientName Table.";
 		s.printStackTrace();
 	    }
 	    return status;
@@ -893,11 +893,11 @@ public class DatabaseController {
 
 	sqlStat = "UPDATE cameronsmith.PatientInsurance ";
 
-	if (!(insuranceProv.equals(""))) {
+	if (insuranceProv.length() > 0) {
 	    sqlStat = sqlStat + "SET insuranceProv=" + insuranceProv;
 	}
 	// returns an empty string for there is no input
-	if (insuranceProv.equals(""))  {
+	if (insuranceProv.length() == 0)  {
 	    return "";
 	}
 
@@ -931,19 +931,19 @@ public class DatabaseController {
 	
 	sqlStat = updatePatientInsuranceQuery(id,insuranceProv);
 
-	if (sqlStat.equals("")) {
+	if (sqlStat.length() == 0) {
 	    return "No fields to update.";
 	}
 	else {
 	    try {
 		statement_.execute(sqlStat);
 		status="updated ";
-		if (!(insuranceProv.equals(""))) {
+		if (insuranceProv.length() > 0) {
 		    status = status + "insuranceProv";
 		}
 	    }
 	    catch(SQLException s) {
-		System.out.println("Something is wrong with the update statement for PatientInsurance Table.");
+		status = "Something is wrong with the update statement for PatientInsurance Table.";
 		s.printStackTrace();
 	    }
 	    return status;
