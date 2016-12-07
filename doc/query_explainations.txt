@@ -1,0 +1,21 @@
+Find Patients with Outstanding Costs Greater than Specified Value:
+    - Finds all patients who have an outstanding cost greater than a specified
+      value. Useful for when you are curious how many patients have an
+      exceptionally large outstanding cost.
+
+Find Patient(s) with a Given Name:
+    - Useful for looking up specific patients to see if they have an entry in
+      the database or not.
+
+Find loyalty of Patients:
+    - Lists the patients in descending order by the number of times they visit.
+      Can be used to incentivize recurring visits to the same dentist.
+
+Find 10 Most Debted Patients:
+    - Useful for finding which patients owe the most money. Can be used to put a
+      freeze on their next visit.
+
+View Most Common Procedure of 2016:
+    - Can be used to figure out what procedures are the most requested moving
+      into 2017. Can be used to guage what new equipment to buy for the next
+      fiscal year.
