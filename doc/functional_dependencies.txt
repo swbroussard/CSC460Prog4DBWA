@@ -1,0 +1,65 @@
+Patient:
+	- patientno -> nextVisit
+	- patientno -> outstandingCost
+	- patientno -> address
+	* The Patient table does not include the name of the Patient, as a superkey
+	  containing the patientno, givenname, and surname, would lead to a
+	  functional dependency on address and their insurance provider, which 
+	  would break 3rd normal form.
+
+PatientName:
+	- patientno -> givenname
+	- patientno -> surname
+	* See explaination under Patient table.
+
+PatientInsurance:
+	- patientno -> insuranceProv
+	* See explaination under Patient table.
+
+Appointment:
+	- appointmentno -> patientno
+	- appointmentno -> day
+	- {appointmentno, patientno} -> day
+	* Patientno is a primary key in this table to exploit the primary
+	  key/foriegn key relation between Appointment and AppointmentProcedure. The
+	  procedures used in an appointment are stored in a separate table,
+	  otherwise appointmentno would functional depend on a set of procedures,
+	  which would violate 1st normal form.
+
+AppointmentProcedure:
+	- No functional dependencies.
+	* This tables serves to be a connection between Appointment and Procedure to
+	  allow both tables to obey 3rd normal form.
+
+Procedure:
+	- procedureno -> name
+	- procedureno -> cost
+	* Length of procedure is ommitted from this table, as it would create a FD
+	  from the super key {procedureno, name} -> length, which would violate 3rd
+	  normal form. Similarly, the equipment used in each procedure is kept in a
+	  separate table, as that would yield the a FD procedureno -> {equipment1,
+	  equipment2, ..., equipmentN} which would violate 1st normal form.
+
+ProcedureLength:
+	- procedureno -> length
+	* See explaination in Procedure.
+
+ProcedureEquipment:
+	- No functional dependencies.
+	* This table serves to be a connection between Procedure and Equipment to
+	  allow both tables to adhere to 3rd normal form.
+
+Lab:
+	- labno -> name
+	* The list of equipment provided by each lab is not stored in this table, as
+	  the primary key would have FDs to all equipment, which would violate 1st
+	  normal form.
+
+LabEquipment:
+	- No functional dependencies.
+	* This table serves to be a connection between Procedure and Equipment to
+	  allow both tables to adhere to 3rd normal form.
+
+Equipment:
+	- equipmentno -> name
+	- equipmentno -> cost
